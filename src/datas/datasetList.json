@@ -1,4 +1,3771 @@
 {
+    "type": null,
     "success": true,
-    "data": []
+    "data": [
+        {
+            "id": "84faa829-5f2c-4a37-984f-67c1bf85d081",
+            "userId": "1",
+            "name": "ac_alarm_statistics",
+            "categoryName": "AC性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-17 16:48:02.106286",
+            "updateTime": "2018-12-26 10:27:52.02",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "alarmnum",
+                            "id": "37d0acd3-3581-c9f3-9deb-209eb8bb6045",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "0cf68dab-f901-8fd2-b075-65c3a0b50eb9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "677fdea9-721a-c1df-7a51-2f3a690e33a1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "413c7d17-bedf-c164-6a12-1c1f2c836bc1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "d2b22a63-9808-1c66-c39f-e02e91349ed5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "bce76c92-beab-3500-1a83-9cda1b2f69a0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "93956153-02e1-a4eb-4841-b3863bf2e7b2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "475b3e20-0697-e9b0-04c7-ad8ab03ef830",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_base_mac",
+                            "id": "efa161fc-c51f-68e4-5f43-43da26f1dd69",
+                            "type": "column"
+                        },
+                        {
+                            "column": "alarmlevel",
+                            "alias": "AC告警分类",
+                            "id": "5950e12f-31ea-d940-909e-28197be809c9",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ac_base_mac",
+                    "alarmlevel",
+                    "alarmnum",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select ac_base_mac,hour,day,weekstart,weekend,month,year,datatype,alarmlevel,alarmnum,rownumber \nFROM (\n  SELECT ac_base_mac,hour,day,weekstart,weekend,month,year,datatype, '严重' as alarmlevel, critical as alarmnum, 1 as rownumber from ac_alarm_statistics WHERE 1=1\nUNION ALL\n  SELECT ac_base_mac,hour,day,weekstart,weekend,month,year,datatype, '重要' as alarmlevel, major as alarmnum, 2 as rownumber from ac_alarm_statistics WHERE 1=1\nUNION ALL\n SELECT ac_base_mac,hour,day,weekstart,weekend,month,year,datatype, '一般' as alarmlevel, normal as alarmnum, 3 as rownumber from ac_alarm_statistics WHERE 1=1\nUNION ALL\n  SELECT ac_base_mac,hour,day,weekstart,weekend,month,year,datatype, '警告' as alarmlevel, warn as alarmnum, 4 as rownumber from ac_alarm_statistics WHERE 1=1\n) distribution;"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "e5c7a67d-4f28-46e5-b683-91d12b90c4c7",
+            "userId": "1",
+            "name": "ac_alarm_statistics_trend",
+            "categoryName": "AC性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 16:07:54.357042",
+            "updateTime": "2018-10-10 16:09:16.447",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "critical",
+                            "id": "fc257b06-76d9-308f-c53e-995593906d01",
+                            "type": "column"
+                        },
+                        {
+                            "column": "major",
+                            "id": "2d591739-b039-8950-4988-2058aebd0141",
+                            "type": "column"
+                        },
+                        {
+                            "column": "normal",
+                            "id": "e0a88b9a-35f1-cecc-2703-7ba25b60cdb8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "warn",
+                            "id": "a927ce81-a769-04b5-edfa-0a30118b51fd",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "0cf68dab-f901-8fd2-b075-65c3a0b50eb9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "677fdea9-721a-c1df-7a51-2f3a690e33a1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "413c7d17-bedf-c164-6a12-1c1f2c836bc1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "d2b22a63-9808-1c66-c39f-e02e91349ed5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "bce76c92-beab-3500-1a83-9cda1b2f69a0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "93956153-02e1-a4eb-4841-b3863bf2e7b2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "475b3e20-0697-e9b0-04c7-ad8ab03ef830",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_base_mac",
+                            "id": "efa161fc-c51f-68e4-5f43-43da26f1dd69",
+                            "type": "column"
+                        },
+                        {
+                            "column": "alarmlevel",
+                            "id": "5950e12f-31ea-d940-909e-28197be809c9",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ac_base_mac",
+                    "critical",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "major",
+                    "month",
+                    "normal",
+                    "warn",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select ac_base_mac,hour,day,weekstart,weekend,month,year,datatype,critical,major,normal,warn from ac_alarm_statistics WHERE 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "777ff523-5924-45c7-b929-1d48b85d2491",
+            "userId": "1",
+            "name": "ac_int_traffic_rate_trend",
+            "categoryName": "AC性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 10:31:38.029013",
+            "updateTime": "2019-02-19 14:53:31.904",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "maxiftxrate",
+                            "id": "5b1286d9-74be-8c9e-39a6-a6620fa13ed5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "miniftxrate",
+                            "id": "27d7852c-2e39-b07f-6d85-318280bf2d13",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgiftxrate",
+                            "id": "203004ca-2607-0e5c-da89-cdf6b6d3282f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxifrxrate",
+                            "id": "81e1e5f6-2a51-5f8b-685a-3cb7c7173577",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minifrxrate",
+                            "id": "91aeffe4-604c-379e-1573-94ef384ede8e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgifrxrate",
+                            "id": "dae4c701-d65b-f40f-db6c-c82c68a28cca",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgifrxrate_kbps",
+                            "id": "feba1b45-1cd9-f0e6-4fa3-c2fbcfadb77a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgiftxrate_kbps",
+                            "id": "5be76e52-28a9-84ba-c429-6011e415c1e3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxifrxrate_kbps",
+                            "id": "cb7f6f26-3e16-c4e7-f67c-cfa7ab6fff00",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxiftxrate_kbps",
+                            "id": "74749475-2c38-7373-04a2-5b547a93fb55",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minifrxrate_kbps",
+                            "id": "efd65e54-af2c-31e1-e619-658bcc6544e7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "miniftxrate_kbps",
+                            "id": "8446d868-f106-9ba9-c734-6f3144b63737",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgifrxrate_mbps",
+                            "id": "43f23316-6d6c-583d-01ee-46fa586d4ea8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgiftxrate_mbps",
+                            "id": "9546aef2-7539-48e0-134a-af61b58013db",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxifrxrate_mbps",
+                            "id": "bfd0c262-07bc-25fa-672a-1736ce70b768",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxiftxrate_mbps",
+                            "id": "a1f1f2bd-56ed-100d-31f9-8bb00297433f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minifrxrate_mbps",
+                            "id": "4894315f-02a2-0805-31e9-c5f2d89620fb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "miniftxrate_mbps",
+                            "id": "08a0e39f-90b4-fe8e-51d1-3170cc0c19ec",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_if_in_bytes_mb",
+                            "id": "129d0d0a-007d-2c84-053f-e0a5e349b207",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_if_out_bytes_mb",
+                            "id": "ed545e2d-0a2a-c2d0-48de-fc676316d251",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_if_in_bytes",
+                            "id": "af2d3394-9bbe-ecfc-2569-0a73e562a086",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_if_out_bytes",
+                            "id": "50dcd254-28bf-8b8a-a9c6-02e27b06d97d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_if_in_bytes",
+                            "id": "5c54478d-f1d9-5082-7dfe-d2b0ee163d5c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_if_in_bytes_mb",
+                            "id": "b78e0dba-69f1-41d7-8847-ec79da3f4315",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_if_out_bytes",
+                            "id": "9b03d264-3a8a-e5b0-fa92-0720329218fe",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_if_out_bytes_mb",
+                            "id": "80e92134-491c-18dd-587d-a93a8b367e9b",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "7a5ba3a5-801b-2aa1-20cf-fc7c0316899e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "0ac71a1b-1ebd-6293-ea44-2ce67dbfc935",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "73edede7-557e-6c23-9fc5-42a70e69efee",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "alias": "周开始",
+                            "id": "88fe2a25-9334-5c57-8563-5b54d90e618e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "alias": "周结束",
+                            "id": "e5c879fc-cc95-db1f-8c4a-9a0dea5024e9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "019887dc-894f-2d1e-0e37-6b492592989a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "alias": "年",
+                            "id": "f380c8ee-6bab-3c29-40ae-d1060b03b95e",
+                            "type": "column"
+                        },
+                        {
+                            "custom": "",
+                            "column": "ac_base_mac",
+                            "alias": "设备mac地址",
+                            "id": "03e6773d-a429-a18e-544a-9b4cffdb63e2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_ip",
+                            "alias": "设备ip地址",
+                            "id": "8f8aa991-8de9-5397-b99d-6e7dd77ca19e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_if_index",
+                            "alias": "AC接口序号",
+                            "id": "a265c6ff-ce69-cce4-66bf-a8ec54b38aa6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_if_ipv4",
+                            "alias": "AC接口ipv4",
+                            "id": "26e6b231-5cbe-773f-9680-6caf09e28107",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_if_name",
+                            "alias": "AC接口名",
+                            "id": "dee2527b-a8b6-fa45-e91c-cd60965b2fc4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_if_type",
+                            "alias": "AC接口类型",
+                            "id": "a122804d-cab5-c174-8c2d-c87b8df95085",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_if_mac",
+                            "alias": "AC接口mac地址",
+                            "id": "89f39474-3f38-02ee-f8d2-b0af4dbf41cd",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ac_base_mac",
+                    "ac_if_index",
+                    "ac_if_ipv4",
+                    "ac_if_mac",
+                    "ac_if_name",
+                    "ac_if_type",
+                    "ac_ip",
+                    "avg_if_in_bytes",
+                    "avg_if_in_bytes_mb",
+                    "avg_if_out_bytes",
+                    "avg_if_out_bytes_mb",
+                    "avgifrxrate",
+                    "avgifrxrate_kbps",
+                    "avgifrxrate_mbps",
+                    "avgiftxrate",
+                    "avgiftxrate_kbps",
+                    "avgiftxrate_mbps",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxifrxrate",
+                    "maxifrxrate_kbps",
+                    "maxifrxrate_mbps",
+                    "maxiftxrate",
+                    "maxiftxrate_kbps",
+                    "maxiftxrate_mbps",
+                    "minifrxrate",
+                    "minifrxrate_kbps",
+                    "minifrxrate_mbps",
+                    "miniftxrate",
+                    "miniftxrate_kbps",
+                    "miniftxrate_mbps",
+                    "month",
+                    "total_if_in_bytes",
+                    "total_if_in_bytes_mb",
+                    "total_if_out_bytes",
+                    "total_if_out_bytes_mb",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select ac_base_mac,hour,day,weekstart,weekend,month,year,datatype,\nac_ip,ac_if_type,ac_if_mac,ac_if_ipv4,ac_if_index,ac_if_name,\navgifrxrate,\nmaxifrxrate,\nminifrxrate,\navgiftxrate,\nmaxiftxrate,\nminiftxrate,\nround(CAST(CAST(avgifrxrate as DECIMAL)/(1024) as DECIMAL ), 3) avgifrxrate_kbps,\nround(CAST(CAST(maxifrxrate as DECIMAL)/(1024) as DECIMAL ), 3) maxifrxrate_kbps,\nround(CAST(CAST(minifrxrate as DECIMAL)/(1024) as DECIMAL ), 3) minifrxrate_kbps,\nround(CAST(CAST(avgiftxrate as DECIMAL)/(1024) as DECIMAL ), 3) avgiftxrate_kbps,\nround(CAST(CAST(maxiftxrate as DECIMAL)/(1024) as DECIMAL ), 3) maxiftxrate_kbps,\nround(CAST(CAST(miniftxrate as DECIMAL)/(1024) as DECIMAL ), 3) miniftxrate_kbps,\nround(CAST(CAST(avgifrxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) avgifrxrate_mbps,\nround(CAST(CAST(maxifrxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) maxifrxrate_mbps,\nround(CAST(CAST(minifrxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) minifrxrate_mbps,\nround(CAST(CAST(avgiftxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) avgiftxrate_mbps,\nround(CAST(CAST(maxiftxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) maxiftxrate_mbps,\nround(CAST(CAST(miniftxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) miniftxrate_mbps,\ntotal_if_in_bytes,\ntotal_if_out_bytes,\navg_if_in_bytes,\navg_if_out_bytes,\nround(CAST(CAST(total_if_in_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) as total_if_in_bytes_mb,\nround(CAST(CAST(total_if_out_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) as total_if_out_bytes_mb,\nround(CAST(CAST(avg_if_in_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) as avg_if_in_bytes_mb,\nround(CAST(CAST(avg_if_out_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) as avg_if_out_bytes_mb\nfrom ac_int_traffic_rate_trend where 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "936c6d32-1daf-4bba-9c01-d4478b7a817b",
+            "userId": "1",
+            "name": "ac_statistic",
+            "categoryName": "资源统计",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-05 19:25:42.284784",
+            "updateTime": "2018-10-10 16:34:53.892",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "acnum",
+                            "id": "c77f2e0c-0da3-0c6d-fd1a-1429bb9456fd",
+                            "type": "column"
+                        },
+                        {
+                            "column": "growthacnum",
+                            "id": "baa7206c-7122-dcb5-bcc6-6b1958739e53",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "115a3313-e670-b765-842e-a6cd1f278971",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "83dc1e06-d494-1d3b-0a62-a1704917e4dd",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "525d9450-f160-51d3-f151-39d6eb0dc920",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "fd8199df-9cc3-a510-d83f-fb5ff788a291",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "abd9cc0e-0edd-941c-56c8-31859f43d624",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "7e02c656-418f-c029-dfd1-1fc628cb5d0a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "a1a72588-a7a4-a3ec-5e2c-dbcb65ebf707",
+                            "type": "column"
+                        },
+                        {
+                            "column": "userid",
+                            "id": "8dbe1a63-c16d-c9ea-3f75-3a4c96e54101",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "acnum",
+                    "datatype",
+                    "day",
+                    "growthacnum",
+                    "hour",
+                    "month",
+                    "userid",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "SELECT userid,hour,day,weekstart,weekend,month,year,datatype,acnum,growthacnum\nfrom ac_statistic where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "9c03eafb-6adc-48d7-93d7-6c84bd65c7d9",
+            "userId": "1",
+            "name": "ac_traffic_rate_trend",
+            "categoryName": "AC性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-17 16:20:08.967577",
+            "updateTime": "2019-02-19 15:11:45.905",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "maxiftxrate",
+                            "id": "d1321664-f45a-f30d-58a1-a1815b82f918",
+                            "type": "column"
+                        },
+                        {
+                            "column": "miniftxrate",
+                            "id": "24937c8b-190a-a2fc-a783-fdc209ba4cd5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgiftxrate",
+                            "id": "917e747f-9085-f17b-cab4-a397d379aaa9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxifrxrate",
+                            "id": "cdf6f28a-516b-fd35-92c8-51f24d450679",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minifrxrate",
+                            "id": "d245292f-a501-a05c-70df-3565d052688b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgifrxrate",
+                            "id": "b329b46d-7df2-3352-7216-86a3acb79ba1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgifrxrate_kbps",
+                            "id": "d836ccc0-e850-2bf2-2872-1da3c8573011",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_if_out_bytes_mb",
+                            "id": "bae2d9af-8587-2ca4-f6fa-2d0db4418e33",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_if_in_bytes_mb",
+                            "id": "08d7d531-9ab7-047f-2cb2-54b2c09dfa7a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_if_in_bytes_mb",
+                            "id": "b453456e-ef3d-8bfc-495f-dee764470d8c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_if_out_bytes_mb",
+                            "id": "741ed1a4-95a5-28ed-37ac-0949b0f42e5f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgiftxrate_kbps",
+                            "id": "91f276d6-1f9d-8a78-7b93-dac8fcfdd36b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxifrxrate_kbps",
+                            "id": "e91d48b1-afea-06bd-6c8b-a871619da4eb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxiftxrate_kbps",
+                            "id": "aa322559-72a1-93b2-7b7d-b26a594975a4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minifrxrate_kbps",
+                            "id": "380c1517-2c1f-a928-42ea-d5b64f21d4e3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "miniftxrate_kbps",
+                            "id": "41bec542-bf35-2319-fbf8-0a89466fce03",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgifrxrate_mbps",
+                            "id": "b28b4842-3923-4f4a-3e18-2a30a66358ed",
+                            "type": "column"
+                        },
+                        {
+                            "column": "miniftxrate_mbps",
+                            "id": "a4850939-9263-d417-a5da-d427763d6723",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minifrxrate_mbps",
+                            "id": "251adc10-cc27-5e1f-43cc-d6f0f75b6f34",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgiftxrate_mbps",
+                            "id": "0c44336c-5b87-d9e1-5718-bfc7a6993a28",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxifrxrate_mbps",
+                            "id": "3dfe1ea2-2db2-be97-a9cb-efea74dedf83",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxiftxrate_mbps",
+                            "id": "e0398cea-25b8-ce81-632c-ab68203f8741",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "1fe638e6-3809-46ef-2b1a-61368e22d139",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "c400bfca-3d22-73df-360c-e789dc634f69",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "a1e54f69-2044-7c3d-322c-1dc6bfea57d7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "ac8371d4-feeb-6d31-86a4-84f778bb55a9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "500011bd-4f99-ddaa-2913-952faa5d5fd1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "7d9108b9-c36d-4470-b468-50af215f37f2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "1a7a9786-de72-c35e-ca86-d66b45363532",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_base_mac",
+                            "id": "26dd6311-da02-20ac-e0d9-4898496eb2ef",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_ip",
+                            "id": "dec33dfb-0644-f5ea-3cc5-7f1e524f7e5f",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ac_base_mac",
+                    "ac_ip",
+                    "avg_if_in_bytes",
+                    "avg_if_in_bytes_mb",
+                    "avg_if_out_bytes",
+                    "avg_if_out_bytes_mb",
+                    "avgifrxrate",
+                    "avgifrxrate_kbps",
+                    "avgifrxrate_mbps",
+                    "avgiftxrate",
+                    "avgiftxrate_kbps",
+                    "avgiftxrate_mbps",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxifrxrate",
+                    "maxifrxrate_kbps",
+                    "maxifrxrate_mbps",
+                    "maxiftxrate",
+                    "maxiftxrate_kbps",
+                    "maxiftxrate_mbps",
+                    "minifrxrate",
+                    "minifrxrate_kbps",
+                    "minifrxrate_mbps",
+                    "miniftxrate",
+                    "miniftxrate_kbps",
+                    "miniftxrate_mbps",
+                    "month",
+                    "total_if_in_bytes",
+                    "total_if_in_bytes_mb",
+                    "total_if_out_bytes",
+                    "total_if_out_bytes_mb",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nac_base_mac,hour,day,weekstart,weekend,month,year,datatype,ac_ip,\navgifrxrate,\nmaxifrxrate,\nminifrxrate,\navgiftxrate,\nmaxiftxrate,\nminiftxrate,\ntotal_if_in_bytes,\ntotal_if_out_bytes,\navg_if_in_bytes,\navg_if_out_bytes,\nround(CAST(CAST(avgifrxrate as DECIMAL)/(1024) as DECIMAL ), 3) avgifrxrate_kbps,\nround(CAST(CAST(maxifrxrate as DECIMAL)/(1024) as DECIMAL ), 3) maxifrxrate_kbps,\nround(CAST(CAST(minifrxrate as DECIMAL)/(1024) as DECIMAL ), 3) minifrxrate_kbps,\nround(CAST(CAST(avgiftxrate as DECIMAL)/(1024) as DECIMAL ), 3) avgiftxrate_kbps,\nround(CAST(CAST(maxiftxrate as DECIMAL)/(1024) as DECIMAL ), 3) maxiftxrate_kbps,\nround(CAST(CAST(miniftxrate as DECIMAL)/(1024) as DECIMAL ), 3) miniftxrate_kbps,\nround(CAST(CAST(avgifrxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) avgifrxrate_mbps,\nround(CAST(CAST(maxifrxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) maxifrxrate_mbps,\nround(CAST(CAST(avgiftxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) avgiftxrate_mbps,\nround(CAST(CAST(maxiftxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) maxiftxrate_mbps,\nround(CAST(CAST(minifrxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) minifrxrate_mbps,\nround(CAST(CAST(miniftxrate as DECIMAL)/(1024*1024) as DECIMAL ), 3) miniftxrate_mbps,\nround(CAST(CAST(total_if_in_bytes AS DECIMAL)/(1024*1024) as DECIMAL ), 3) as total_if_in_bytes_mb,\nround(CAST(CAST(total_if_out_bytes AS DECIMAL)/(1024*1024) as DECIMAL ), 3) as total_if_out_bytes_mb,\nround(CAST(CAST(avg_if_in_bytes AS DECIMAL)/(1024*1024) as DECIMAL ), 3) as avg_if_in_bytes_mb,\nround(CAST(CAST(avg_if_out_bytes AS DECIMAL)/(1024*1024) as DECIMAL ), 3) as avg_if_out_bytes_mb \nfrom ac_traffic_rate_trend where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "f5662aed-841d-4ddb-ad9c-ffd46a4b6b2d",
+            "userId": "1",
+            "name": "ac_usage_stats",
+            "categoryName": "AC性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-11 09:40:45.02713",
+            "updateTime": "2018-09-17 12:29:55.41",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "maxcpuusage",
+                            "id": "562f62a4-56a3-0970-0a81-2b21edc6b427",
+                            "type": "column"
+                        },
+                        {
+                            "column": "mincpuusage",
+                            "id": "f4cb398d-f2cc-7f9b-c4f8-f93d644cec2f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgcpuusage",
+                            "id": "3cec9a00-614f-ada6-0722-7959c2b680be",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxmemusage",
+                            "id": "dcebf125-3724-eb3c-9847-05054dd51a4f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minmemusage",
+                            "id": "0f25be19-102a-e13a-97dc-b1b5d5f4abd8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgmemusage",
+                            "id": "7f176284-fe80-5108-bc77-60f57f49699e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxdiskusage",
+                            "id": "da6e1b3c-268a-2ba7-ffbd-25c29b81441c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "mindiskusage",
+                            "id": "e6ffdb7e-7efa-49cd-f3a4-a518dd0226da",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgdiskusage",
+                            "id": "a319af5d-1d32-86c7-505c-963c1316f4a9",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "58a9db74-9df4-d33d-d2f6-9802cff4b0ff",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "2384ff6d-0571-865b-814a-47d85b8a721e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "93efb86a-ff70-8df5-0db9-9d85d65858a5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "913d85e8-0873-b83b-6279-9ee9e4819935",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "cfcdd4ca-49d5-817b-7da9-9b9775bdf20d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "5ff5fce7-dceb-256b-0dbf-d4095113c023",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "d4451bff-172a-82bb-1ef5-7a5392c74025",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_base_mac",
+                            "id": "dc510156-eced-6c76-4e60-73583f6ca9d3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_ip",
+                            "id": "be33e2ff-1194-ca3f-977f-b6d1838de6f9",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ac_base_mac",
+                    "ac_ip",
+                    "avgcpuusage",
+                    "avgdiskusage",
+                    "avgmemusage",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxcpuusage",
+                    "maxdiskusage",
+                    "maxmemusage",
+                    "mincpuusage",
+                    "mindiskusage",
+                    "minmemusage",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select ac_base_mac,hour,day,weekstart,weekend,month,year,datatype,ac_ip,\nround(cast(avgcpuusage*100 as numeric ), 2) as avgcpuusage,\nround(cast(maxcpuusage*100 as numeric ), 2) as maxcpuusage,\nround(cast(mincpuusage*100 as numeric ), 2) as mincpuusage,\nround(cast(avgmemusage*100 as numeric ), 2) as avgmemusage,\nround(cast(maxmemusage*100 as numeric ), 2) as maxmemusage,\nround(cast(minmemusage*100 as numeric ), 2) as minmemusage,\nround(cast(avgdiskusage*100 as numeric ), 2) as avgdiskusage,\nround(cast(maxdiskusage*100 as numeric ), 2) as maxdiskusage,\nround(cast(mindiskusage*100 as numeric ), 2) as mindiskusage \nfrom ac_usage_stats WHERE 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "a05c57bb-3df4-4416-ad4d-7c43418208d6",
+            "userId": "1",
+            "name": "ap_alarm_statistics",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-05 12:47:30.777842",
+            "updateTime": "2019-02-21 12:49:36.103",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "alarmnum",
+                            "id": "c41dace5-6244-4bfa-98f4-d6d0bb4867af",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "alarmlevel",
+                            "alias": "AP告警分类",
+                            "id": "b3c69960-5dfd-497d-a6f1-126d6e314fb0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "da9a2902-b4a5-4a7b-bb6f-f66a28f8e251",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "1ab600b6-1269-4aeb-b57e-59c6323b63f3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "2872232a-2ff6-4d76-b989-56df9c396c16",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "b5f3b29e-757d-46cf-a2f3-05489570060d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "0e68bb49-c7bd-448c-888d-7380bd373fb9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "57933044-3f74-40a6-b553-787524451986",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "818b76f0-3cc9-46d4-a50a-620c9cb7e77d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "c7853154-7633-6218-9d53-2a9a0920d72b",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "alarmlevel",
+                    "alarmnum",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,alarmlevel,alarmnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, '严重' as alarmlevel, critical as alarmnum, 1 as rownumber from ap_alarm_statistics WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, '重要' as alarmlevel, major as alarmnum, 2 as rownumber from ap_alarm_statistics WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, '一般' as alarmlevel, normal as alarmnum, 3 as rownumber from ap_alarm_statistics WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, '警告' as alarmlevel, warn as alarmnum, 4 as rownumber from ap_alarm_statistics WHERE 1=1\n  ) distribution"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "d1734a20-d6de-4d4e-bbb8-b0d93833e737",
+            "userId": "1",
+            "name": "ap_alarm_statistics_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 14:15:09.033633",
+            "updateTime": "2018-10-11 14:15:09.033633",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "critical",
+                            "id": "34285690-d795-ef60-447f-033da4f29181",
+                            "type": "column"
+                        },
+                        {
+                            "column": "major",
+                            "id": "41e976f9-fe1f-04cf-1601-4cb6e5cdf85d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "normal",
+                            "id": "0d4f6237-af42-c9e4-b104-36ae03626952",
+                            "type": "column"
+                        },
+                        {
+                            "column": "warn",
+                            "id": "4e92b34a-87c1-b743-fb1c-bf96132779d4",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "areaid",
+                            "id": "ca94cb38-7c33-5e30-4e71-8c572cd3ce69",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "035ada63-cc72-b341-41a8-8f58afeccf3c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "a9fc4db6-6356-a0d5-c902-10cb44b68a8a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "81e001a3-aa45-6603-14db-cd791cceed58",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "6dfb0290-ce4b-e012-715a-d04d2cd3a1fc",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "a224c5a9-1046-418c-edb4-ebf9f842e614",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "18ce5a3f-2f28-4485-bbd9-6d090b71bb9e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "7b471e25-7da8-db06-7a9c-201119f4a9b8",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "critical",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "major",
+                    "month",
+                    "normal",
+                    "warn",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,critical,major,normal,warn from ap_alarm_statistics WHERE 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "98c5e7a1-5597-4b19-ba2f-cb4d3df98056",
+            "userId": "1",
+            "name": "ap_alarm_top10",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 14:40:53.934683",
+            "updateTime": "2019-03-04 10:21:58.664",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "ap_base_mac",
+                            "show": false,
+                            "id": "3e8c34b7-a2c5-0218-275d-13771bdeb724",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ap_base_device_type",
+                            "id": "8eb5d58e-041e-9dda-abbf-744a36a30d39",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areainfo",
+                            "id": "c24c9fc0-241c-55aa-1e91-2d5b8db4fb86",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_alarm",
+                            "show": false,
+                            "id": "a987371e-7dbe-d043-5e98-7e71bcd5ff00",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "areaid",
+                            "id": "e83ea028-09a4-46da-a936-7bfa0fa1f61b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "5602d764-3738-fc1c-4998-999fe4e8e468",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "25a8b0df-576f-03ab-feea-e9fae931e979",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "591decf5-818e-5637-9d9d-80fe4cc6d578",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "c62d257e-f3bf-f13a-c09d-6cb42318c155",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "86ae8383-9829-e295-9842-b536ba2217f8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "4e37edc5-f5d6-2c71-80cf-e421e8dcc17b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "17b8f953-0af3-6d63-4849-bc47072fe2ad",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ap_base_mac",
+                            "alias": "AP MAC",
+                            "id": "a2109f59-6733-28d9-335c-0c553277e532",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ap_base_device_type",
+                            "alias": "型号",
+                            "id": "e62c184d-ab03-47bd-4fd8-06f9d29f84ee",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areainfo",
+                            "alias": "所属区域",
+                            "id": "87ed4e82-9bb5-583d-5c99-9b616252c736",
+                            "type": "column"
+                        },
+                        {
+                            "column": "total_alarm",
+                            "alias": "告警次数",
+                            "id": "9f2b3572-3e43-6055-5c34-c66831faf91d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "level1name",
+                            "alias": "一级区域",
+                            "id": "4659c882-a1a3-539d-f121-98f1e28601f4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "level2name",
+                            "alias": "二级区域",
+                            "id": "14095ef8-01b1-1359-f50e-ece003552926",
+                            "type": "column"
+                        },
+                        {
+                            "column": "level3name",
+                            "alias": "三级区域",
+                            "id": "178ff90a-bbc8-d17d-b411-191f7e4fcddc",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ap_base_device_type",
+                    "ap_base_mac",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "level1id",
+                    "level1name",
+                    "level2id",
+                    "level2name",
+                    "level3id",
+                    "level3name",
+                    "month",
+                    "total_alarm",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "SELECT \nt1.areaid, UPPER(CAST(t1.ap_base_mac as VARCHAR)) as ap_base_mac, t1.ap_base_device_type,\n t1.areainfo ->> 'level1Id' as level1id,\n t1.areainfo ->> 'level1Name' as level1Name,\n t1.areainfo ->> 'level2Id' as level2id,\n t1.areainfo ->> 'level2Name' as level2Name,\n t1.areainfo ->> 'level3Id' as level3Id,\n t1.areainfo ->> 'level3Name' as level3Name,\nt1.hour, t1.day, t1.weekstart, t1.weekend, t1.month, t1.year, t1.datatype,\nt2.total_alarm\nFROM ap_alarm_top10 t1 \nLEFT JOIN \n(\nSELECT ap_base_mac, ap_base_device_type,SUM(total_alarm) total_alarm\nFROM ap_alarm_top10 \nWHERE 1=1\nGROUP BY ap_base_mac, ap_base_device_type\n) t2\nON t1.ap_base_mac=t2.ap_base_mac AND t1.ap_base_device_type=t2.ap_base_device_type\nWHERE 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "5059df3b-647c-45f9-aea6-971e10bdea94",
+            "userId": "1",
+            "name": "ap_offline_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 16:34:04.629726",
+            "updateTime": "2018-10-23 12:38:31.694",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "avgapnum",
+                            "id": "b4e4111c-6e3a-4bed-d141-129affb9268a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgofflineapnum",
+                            "id": "a00a1c2a-2f54-6d9c-af81-4be266d3388a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgofflinerate",
+                            "id": "0c2b295b-b6fc-0a22-78ad-e146d926db11",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxofflinerate",
+                            "id": "a2b83bd7-eeaa-d049-4be9-59abd802bdaf",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxofflineapnum",
+                            "id": "1db49909-a27f-e1ad-544d-52739a1cf327",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minofflineapnum",
+                            "id": "4f505ca1-1342-5a8e-38f5-15629cfea5ab",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minofflinerate",
+                            "id": "f4c437ca-ac09-ff74-7438-1ae751a19ffa",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgofflinerate100",
+                            "id": "e3bcb073-0501-a1de-003a-4bfdf74ac747",
+                            "type": "column"
+                        },
+                        {
+                            "column": "maxofflinerate100",
+                            "id": "81c93e3b-b2a8-e3a9-5639-cc20f06038a0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minofflinerate100",
+                            "id": "d085afe4-5ecb-dcc9-da01-c62770ef55e5",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "478b1dc2-6678-4f0b-b5fb-7ca1680d590b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "3e762526-95d3-0731-4ef9-7afe63df5508",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "bc027403-941b-05d8-f6c8-2ff8b0b77366",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "21c831b4-70d4-cf82-8921-2557eb0ec8de",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "3c6f2ead-3880-791b-7924-c06c61273fc6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "b1a043ee-7523-68cf-6089-0e6d452d1712",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "82cae3a0-61bb-844d-1820-20ad9e79d819",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "70b805d7-9dd1-1b0d-ecc8-a4f18f797871",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "avgapnum",
+                    "avgofflineapnum",
+                    "avgofflinerate",
+                    "avgofflinerate100",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxofflineapnum",
+                    "maxofflinerate",
+                    "maxofflinerate100",
+                    "minofflineapnum",
+                    "minofflinerate",
+                    "minofflinerate100",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nareaid,hour,day,weekstart,weekend,month,year,datatype,\navgapnum,avgofflineapnum,maxofflineapnum,minofflineapnum,\navgofflinerate,\nmaxofflinerate,\nminofflinerate,\nround(cast(avgofflinerate*100 as numeric ), 2) avgofflinerate100,\nround(cast(maxofflinerate*100 as numeric ), 2) maxofflinerate100,\nround(cast(minofflinerate*100 as numeric ), 2) minofflinerate100\nfrom ap_offline_trend where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "08ae5ac1-d73f-4bba-b6e7-df98c5386ecb",
+            "userId": "1",
+            "name": "ap_onac_online_trend",
+            "categoryName": "AC性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-17 15:38:27.207635",
+            "updateTime": "2018-09-17 15:43:36.958",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "maxapnum",
+                            "id": "4fe9c401-36dc-ea9b-39c7-96ad269835a4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minapnum",
+                            "id": "e94d9186-9687-5465-89b9-05319d965740",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgapnum",
+                            "id": "1be7d7a0-b801-7cd6-9808-a89a1ecf635b",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "14c22b3d-7da2-bc8d-f892-29cfa0543dd5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "378b6162-ff93-b491-5443-d39151236016",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "bad79305-6b14-e503-15a8-62bac30444e8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "c2c339fd-59d8-f167-060c-9a5379d59d84",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "a754a6ce-3898-f95d-eb45-ea330188d2d8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "cfc95d48-04c8-ce88-d3eb-deeeff9d763e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "172cf68a-1d33-19ac-4cbe-a487923faa04",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_base_mac",
+                            "id": "c7fb70b8-80e9-fbd4-ce45-0a2f0d18ae60",
+                            "type": "column"
+                        },
+                        {
+                            "column": "ac_ip",
+                            "id": "cc7924f6-f95a-8fe8-18ce-43b0723d66e2",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "ac_base_mac",
+                    "ac_ip",
+                    "avgapnum",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxapnum",
+                    "minapnum",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nac_base_mac,hour,day,weekstart,weekend,month,year,datatype,ac_ip,avgapnum,maxapnum,minapnum\nfrom ap_onac_online_trend where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "f7d20b2e-33ba-419d-b70e-135ed6f10d12",
+            "userId": "1",
+            "name": "ap_online_client_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-05 12:47:30.777842",
+            "updateTime": "2019-03-20 18:03:17.92",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "apnum",
+                            "id": "2b53f0fe-8e45-ad66-629a-884fd2004652",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "clientnumrange",
+                            "alias": "终端数区间",
+                            "id": "a2f5f994-c274-496e-b789-7c01fcdec1c6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "8dd4d15b-533f-490a-9a8c-511e59a0d323",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "35cd37d0-7607-4b75-8f86-b688a4eb0859",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "441f83cf-fead-488d-8266-2f2392007df4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "da30339d-a720-4aef-bc60-a16e8b411ae4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "76ef253a-ce73-4316-884d-ed64bc656fdf",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "a6ad3986-d95b-4a97-8f0a-af34460b3cc3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "71516c25-e930-4ddb-b669-4c6c51553e4b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "253b17d9-184a-404f-a70e-ba107284e823",
+                            "type": "column"
+                        },
+                        {
+                            "column": "totalsamplenumber",
+                            "id": "9f8a94bb-f268-c05b-ab6b-c22c8a70aaed",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "apnum",
+                    "areaid",
+                    "clientnumrange",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "totalsamplenumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber,clientnumrange,apnum,rownumber\nFROM (\n SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber, '<5' as clientnumrange, clientnumrange1 as apnum,1 as rownumber from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber, '5-10' as clientnumrange, clientnumrange2 as apnum,2 as rownumber  from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber, '10-20' as clientnumrange, clientnumrange3 as apnum,3 as rownumber  from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber, '20-30' as clientnumrange, clientnumrange4 as apnum,4 as rownumber  from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber, '30-50' as clientnumrange, clientnumrange5 as apnum,5 as rownumber  from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, totalsamplenumber,'50-60' as clientnumrange, clientnumrange6 as apnum,6 as rownumber  from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsamplenumber, '≥60' as clientnumrange, clientnumrange7 as apnum,7 as rownumber  from ap_online_client_distribution WHERE 1=1 and totalsamplenumber >0\n) distribution;"
+                },
+                "filters": [],
+                "expressions": [
+                    {
+                        "alias": "AP占比",
+                        "id": "c4c8e540-a4b6-66fe-e320-2b5fa053dd6e",
+                        "type": "exp",
+                        "exp": "round(CAST((CAST(sum(apnum) as DECIMAL) / CAST(sum(totalsamplenumber) as DECIMAL)) * 100 as DECIMAL), 2)"
+                    }
+                ]
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "d94d4413-93be-4884-92e1-68f57df413ae",
+            "userId": "1",
+            "name": "ap_online_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-17 10:51:06.697941",
+            "updateTime": "2018-10-10 16:35:33.03",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "maxapnum",
+                            "id": "686dc26b-7a52-f847-1810-a3c23e0021c0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minapnum",
+                            "id": "ff7b6a86-086e-f39e-9572-b8b6f6644cec",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgapnum",
+                            "id": "b333d192-ac3a-50d4-599c-467a0d00d193",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "478b1dc2-6678-4f0b-b5fb-7ca1680d590b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "3e762526-95d3-0731-4ef9-7afe63df5508",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "bc027403-941b-05d8-f6c8-2ff8b0b77366",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "21c831b4-70d4-cf82-8921-2557eb0ec8de",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "3c6f2ead-3880-791b-7924-c06c61273fc6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "b1a043ee-7523-68cf-6089-0e6d452d1712",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "82cae3a0-61bb-844d-1820-20ad9e79d819",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "70b805d7-9dd1-1b0d-ecc8-a4f18f797871",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "avgapnum",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxapnum",
+                    "minapnum",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nareaid,hour,day,weekstart,weekend,month,year,datatype,avgapnum,maxapnum,minapnum\nfrom ap_online_trend where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "edb476a2-5eef-4782-9456-9069153500ee",
+            "userId": "1",
+            "name": "ap_radio_traffic_rate_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 20:03:05.747456",
+            "updateTime": "2019-03-01 13:44:47.077",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "aptosta_tx_5g_data_bytes_mb",
+                            "id": "6c3f8651-37e7-27fa-bb99-890b4fd608c8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_24g_data_bytes_mb",
+                            "id": "df7085ee-c28d-8320-bcf6-b66569243303",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_24g_data_bytes_mb",
+                            "id": "fd93487f-2cb1-9cbf-4ecf-bb868b7d0e72",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_5g_data_bytes_mb",
+                            "id": "557a3fde-7315-8a73-81a7-c6f39c0df58b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_5g_data_bytes_kb",
+                            "id": "d3b559b4-49a4-2ebb-dabf-5145954bebd0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_24g_data_bytes_kb",
+                            "id": "e5e5b2f1-baf2-081c-1470-67e5b77b293e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_24g_data_bytes_kb",
+                            "id": "9e12999b-6a2a-562e-c0cc-239c7bf368e0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_5g_data_bytes_kb",
+                            "id": "66fc39b2-7a78-e3bb-a62b-3979bce5ac87",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_24g_data_bytes",
+                            "id": "5c007681-a802-1ffc-0aba-96c1350f7f6b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_5g_data_bytes",
+                            "id": "3b25e85a-d483-52f9-baf0-856f72c93936",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_24g_data_bytes",
+                            "id": "0356c0f1-1d94-416c-7a97-5638851e436e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_5g_data_bytes",
+                            "id": "dbd562fd-b90a-17e2-8d1b-51e5cb455521",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "ce6616fd-e014-19ab-9814-df67557f360a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "37c5790e-b6b7-dfb1-16ed-d97f25ae42ac",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "5cf9da3b-3d13-4e0d-4c9c-57d5b90eab67",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "45d39d72-efb9-4f85-a4a7-40e611b38758",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "c4d99b51-62fa-ce54-a503-0b5a33636b08",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "71d0d97e-c272-4204-c18f-71988615332c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "e055c3cc-b407-9ee1-8a1c-3684a983ae23",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "d33976e4-1472-607c-ad7f-ba56a7115e37",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "aptosta_tx_24g_data_bytes",
+                    "aptosta_tx_24g_data_bytes_kb",
+                    "aptosta_tx_24g_data_bytes_mb",
+                    "aptosta_tx_5g_data_bytes",
+                    "aptosta_tx_5g_data_bytes_kb",
+                    "aptosta_tx_5g_data_bytes_mb",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "statoap_rx_24g_data_bytes",
+                    "statoap_rx_24g_data_bytes_kb",
+                    "statoap_rx_24g_data_bytes_mb",
+                    "statoap_rx_5g_data_bytes",
+                    "statoap_rx_5g_data_bytes_kb",
+                    "statoap_rx_5g_data_bytes_mb",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nareaid,hour,day,weekstart,weekend,month,year,datatype,\nstatoap_rx_24g_data_bytes,\naptosta_tx_24g_data_bytes,\nstatoap_rx_5g_data_bytes,\naptosta_tx_5g_data_bytes,\nround(CAST(CAST(statoap_rx_24g_data_bytes as DECIMAL)/(1024) as DECIMAL ), 3) statoap_rx_24g_data_bytes_kb,\nround(CAST(CAST(aptosta_tx_24g_data_bytes as DECIMAL)/(1024) as DECIMAL ), 3) aptosta_tx_24g_data_bytes_kb,\nround(CAST(CAST(statoap_rx_5g_data_bytes as DECIMAL)/(1024) as DECIMAL ), 3) statoap_rx_5g_data_bytes_kb,\nround(CAST(CAST(aptosta_tx_5g_data_bytes as DECIMAL)/(1024) as DECIMAL ), 3) aptosta_tx_5g_data_bytes_kb,\nround(CAST(CAST(statoap_rx_24g_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) statoap_rx_24g_data_bytes_mb,\nround(CAST(CAST(aptosta_tx_24g_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) aptosta_tx_24g_data_bytes_mb,\nround(CAST(CAST(statoap_rx_5g_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) statoap_rx_5g_data_bytes_mb,\nround(CAST(CAST(aptosta_tx_5g_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) aptosta_tx_5g_data_bytes_mb\nfrom ap_radio_traffic_rate_trend where 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "a8faa977-f701-4947-a861-ddb2d5730e53",
+            "userId": "1",
+            "name": "ap_statistic",
+            "categoryName": "资源统计",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-05 12:47:30.777842",
+            "updateTime": "2018-09-05 12:47:30.777842",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "apnum",
+                            "id": "6a9c803f-1c1c-4cf2-b887-e4c09e1b1393",
+                            "type": "column"
+                        },
+                        {
+                            "column": "apenablenum",
+                            "id": "7ab6bddd-adda-48dd-8dbc-4e49cf6308e2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "apdisablenum",
+                            "id": "18820b6a-d68f-45d0-9af4-fe0aa5817387",
+                            "type": "column"
+                        },
+                        {
+                            "column": "growthapnum",
+                            "id": "9d9e95a5-7fd2-4fb4-bab3-693d86762759",
+                            "type": "column"
+                        },
+                        {
+                            "column": "circular_growth_ratio",
+                            "id": "f8d8ad09-5847-4ba4-a92a-795202ad483f",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "74dd770c-e501-4532-839a-9f213a76782f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "9c9191b4-536a-4f31-840b-8adeed191621",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "8288fb64-8ffa-41f4-94ca-0211b1661da8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "a73d6923-ec01-4aa4-9985-758bb4c69aa8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "ec950332-cc8b-472f-8e21-ac44ffe1fe13",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "28986b0a-8f4e-4e4b-9e62-828290eac6b2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "f446ae6f-9733-47b7-99db-56416ddf54a0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "userid",
+                            "id": "48da8fdd-000f-4953-9388-c75f3b06ff9b",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "apdisablenum",
+                    "apenablenum",
+                    "apnum",
+                    "circular_growth_ratio",
+                    "datatype",
+                    "day",
+                    "growthapnum",
+                    "hour",
+                    "month",
+                    "userid",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select userid,hour,day,weekstart,weekend,month,year,datatype,\napenablenum,apdisablenum,apnum,growthapnum,circular_growth_ratio \nfrom ap_statistic where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "260f8840-73bb-4d76-add6-6ed59c5799b2",
+            "userId": "1",
+            "name": "ap_total_client_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 20:18:57.91405",
+            "updateTime": "2019-03-20 18:16:38.2",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "apnum",
+                            "id": "2dd7ac32-5020-4812-036e-655eaadd8b37",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "516c21e3-d0ad-7ecb-cf96-0b8e4fb4ffb7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "3c6f31bb-0582-6e71-2b00-30e4c4e3fb8a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "18edfedb-e407-abc3-f2bc-0e60be583c84",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "99a8a72b-50bb-ff61-6d75-ceee27ae065d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "9fe281ef-39fb-fdbf-8d36-d33db44d7320",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "1472ec49-0c3e-9292-954a-c0266622b939",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "d954bed9-a094-bc34-fd95-eff73a19615b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "47a58c1d-a8c7-8a84-45fe-eb2bb37c3b31",
+                            "type": "column"
+                        },
+                        {
+                            "column": "clientnumrange",
+                            "alias": "终端数区间",
+                            "id": "14063ad8-85a5-d5bf-8068-209117d3a791",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "apnum",
+                    "areaid",
+                    "clientnumrange",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,clientnumrange,apnum ,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '<5' \n         WHEN datatype = 2 THEN '<10' \n         WHEN datatype = 3 THEN '<20' \n         WHEN datatype = 4 THEN '<50' \n         WHEN datatype = 5 THEN '<100' \n         ELSE 'other' END\n      as clientnumrange, \n  1 as rownumber,\n  clientnumrange1 as apnum from ap_total_client_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5-10' \n         WHEN datatype = 2 THEN '10-20' \n         WHEN datatype = 3 THEN '20-50' \n         WHEN datatype = 4 THEN '50-100' \n         WHEN datatype = 5 THEN '100-200' \n         ELSE 'other' END\n      as clientnumrange, \n  2 as rownumber,\n  clientnumrange2 as apnum from ap_total_client_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '10-20' \n         WHEN datatype = 2 THEN '20-50' \n         WHEN datatype = 3 THEN '50-100' \n         WHEN datatype = 4 THEN '100-200' \n         WHEN datatype = 5 THEN '200-500' \n         ELSE 'other' END\n      as clientnumrange, \n  3 as rownumber,\n  clientnumrange3 as apnum from ap_total_client_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '20-50' \n         WHEN datatype = 2 THEN '50-100' \n         WHEN datatype = 3 THEN '100-200' \n         WHEN datatype = 4 THEN '200-500' \n         WHEN datatype = 5 THEN '500-1000' \n         ELSE 'other' END\n      as clientnumrange, \n  4 as rownumber,\n  clientnumrange4 as apnum from ap_total_client_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100' \n         WHEN datatype = 2 THEN '100-200' \n         WHEN datatype = 3 THEN '200-500' \n         WHEN datatype = 4 THEN '500-1000' \n         WHEN datatype = 5 THEN '1000-2000' \n         ELSE 'other' END\n      as clientnumrange, \n  5 as rownumber,\n  clientnumrange5 as apnum from ap_total_client_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-200' \n         WHEN datatype = 2 THEN '200-500' \n         WHEN datatype = 3 THEN '500-1000' \n         WHEN datatype = 4 THEN '1000-2000' \n         WHEN datatype = 5 THEN '2000-5000' \n         ELSE 'other' END\n      as clientnumrange, \n  6 as rownumber,\n  clientnumrange6 as apnum from ap_total_client_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥200' \n         WHEN datatype = 2 THEN '≥500'  \n         WHEN datatype = 3 THEN '≥1000'  \n         WHEN datatype = 4 THEN '≥2000'  \n         WHEN datatype = 5 THEN '≥5000'  \n         ELSE 'other' END\n      as clientnumrange, \n  7 as rownumber,\n  clientnumrange7 as apnum from ap_total_client_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "63d95040-480a-4360-b0f5-c61949f93d32",
+            "userId": "1",
+            "name": "ap_wirless_rx_traffic_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 19:29:41.66871",
+            "updateTime": "2019-02-21 11:27:15.833",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "apnum",
+                            "id": "489184b7-3161-85cb-4019-3a72f26f71f1",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "1b141a7d-c8e7-359e-ae8b-6f9262d43bf4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "f89f48da-a5dc-c821-55f0-837980b96b52",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "4ae84b59-7b8a-c80b-724e-28b0376529f9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "47c16fb6-67c8-ba55-9e2b-f671c6b1b833",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "4047549e-fa6b-5bf8-f6ed-e04fbada0179",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "d233fdbf-bab2-05cc-1b17-77c45dbf9b34",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "47e1d8a7-0e0f-f8c1-5211-3d884c059fc0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "de7040c8-2934-e285-4675-c220fd7208cb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "apnumrange",
+                            "alias": "流量区间",
+                            "id": "7eda4760-dc7c-94a3-8d48-919fa4dabe13",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "apnum",
+                    "apnumrange",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,apnumrange,apnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '<50MB' \n         WHEN datatype = 2 THEN '<100MB' \n         WHEN datatype = 3 THEN '<500MB' \n         WHEN datatype = 4 THEN '<1GB' \n         WHEN datatype = 5 THEN '<5GB' \n         ELSE 'other' END\n      as apnumrange, \n  1 as rownumber,\n  apnumrange1 as apnum from ap_wirless_rx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100MB' \n         WHEN datatype = 2 THEN '100-500MB' \n         WHEN datatype = 3 THEN '500MB-1GB' \n         WHEN datatype = 4 THEN '1-5GB' \n         WHEN datatype = 5 THEN '5-10GB'  \n         ELSE 'other' END\n      as apnumrange, \n  2 as rownumber,\n  apnumrange2 as clientnum from ap_wirless_rx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-500MB' \n         WHEN datatype = 2 THEN '500MB-1GB' \n         WHEN datatype = 3 THEN '1-5GB' \n         WHEN datatype = 4 THEN '5-10GB' \n         WHEN datatype = 5 THEN '10-50GB'  \n         ELSE 'other' END\n      as apnumrange, \n  3 as rownumber,\n  apnumrange3 as clientnum from ap_wirless_rx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '500MB-1GB' \n         WHEN datatype = 2 THEN '1-5GB' \n         WHEN datatype = 3 THEN '5-10GB' \n         WHEN datatype = 4 THEN '10-50GB'  \n         WHEN datatype = 5 THEN '50-100GB'  \n         ELSE 'other' END\n      as apnumrange, \n  4 as rownumber,\n  apnumrange4 as clientnum from ap_wirless_rx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '1-5GB' \n         WHEN datatype = 2 THEN '5-10GB' \n         WHEN datatype = 3 THEN '10-50GB'  \n         WHEN datatype = 4 THEN '50-100GB'  \n         WHEN datatype = 5 THEN '100-500GB'  \n         ELSE 'other' END\n      as apnumrange, \n  5 as rownumber,\n  apnumrange5 as clientnum from ap_wirless_rx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5-10GB' \n         WHEN datatype = 2 THEN '10-50GB'  \n         WHEN datatype = 3 THEN '50-100GB'  \n         WHEN datatype = 4 THEN '100-500GB'  \n         WHEN datatype = 5 THEN '500GB-1TB'  \n         ELSE 'other' END\n      as apnumrange, \n  6 as rownumber,\n  apnumrange6 as clientnum from ap_wirless_rx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥10GB' \n         WHEN datatype = 2 THEN '≥50GB'  \n         WHEN datatype = 3 THEN '≥100GB'  \n         WHEN datatype = 4 THEN '≥500GB'  \n         WHEN datatype = 5 THEN '≥1TB'  \n         ELSE 'other' END\n      as apnumrange, \n  7 as rownumber,\n  apnumrange7 as clientnum from ap_wirless_rx_traffic_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "812ce79e-abfa-427c-8dec-401448637ccb",
+            "userId": "1",
+            "name": "ap_wirless_traffic_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 18:36:40.294028",
+            "updateTime": "2019-02-21 11:32:10.105",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "apnum",
+                            "id": "0b2f1d6a-815b-95b5-cb2f-e83f2f2b5277",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "06b1acb7-262a-c99f-5b1e-bedbffa26ef6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "89397627-9a24-91de-5e5f-3ecd53c40a0f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "bd72acc9-23f4-cd71-9dd9-2d4953254296",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "e976f041-df62-9c78-0eee-9f8b916209ff",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "a8ccbeb8-1719-b76c-5fcf-285baf2370ab",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "4ee60610-cf1a-b3d9-cee2-3e550af0ec9a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "356f9245-4d89-38c8-29dc-71f5ef1dca34",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "863abcd3-feed-8a8a-01aa-8e3c0db16d3e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "apnumrange",
+                            "alias": "流量区间",
+                            "id": "7561b0c2-9df2-c3a6-5cf3-e8877bbf50c6",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "apnum",
+                    "apnumrange",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,apnumrange,apnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '<50MB' \n         WHEN datatype = 2 THEN '<100MB' \n         WHEN datatype = 3 THEN '<500MB' \n         WHEN datatype = 4 THEN '<1GB' \n         WHEN datatype = 5 THEN '<5GB' \n         ELSE 'other' END\n      as apnumrange, \n  1 as rownumber,\n  apnumrange1 as apnum from ap_wirless_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100MB' \n         WHEN datatype = 2 THEN '100-500MB' \n         WHEN datatype = 3 THEN '500MB~1GB' \n         WHEN datatype = 4 THEN '1-5GB' \n         WHEN datatype = 5 THEN '5-10GB'  \n         ELSE 'other' END\n      as apnumrange, \n  2 as rownumber,\n  apnumrange2 as clientnum from ap_wirless_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-500MB' \n         WHEN datatype = 2 THEN '500MB-1GB' \n         WHEN datatype = 3 THEN '1-5GB' \n         WHEN datatype = 4 THEN '5-10GB' \n         WHEN datatype = 5 THEN '10-50GB'  \n         ELSE 'other' END\n      as apnumrange, \n  3 as rownumber,\n  apnumrange3 as clientnum from ap_wirless_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '500MB-1GB' \n         WHEN datatype = 2 THEN '1-5GB' \n         WHEN datatype = 3 THEN '5-10GB' \n         WHEN datatype = 4 THEN '10-50GB'  \n         WHEN datatype = 5 THEN '50-100GB'  \n         ELSE 'other' END\n      as apnumrange, \n  4 as rownumber,\n  apnumrange4 as clientnum from ap_wirless_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '1-5GB' \n         WHEN datatype = 2 THEN '5-10GB' \n         WHEN datatype = 3 THEN '10-50GB'  \n         WHEN datatype = 4 THEN '50-100GB'  \n         WHEN datatype = 5 THEN '100-500GB'  \n         ELSE 'other' END\n      as apnumrange, \n  5 as rownumber,\n  apnumrange5 as clientnum from ap_wirless_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5-10GB' \n         WHEN datatype = 2 THEN '10-50GB'  \n         WHEN datatype = 3 THEN '50-100GB'  \n         WHEN datatype = 4 THEN '100-500GB'  \n         WHEN datatype = 5 THEN '500GB-1TB'  \n         ELSE 'other' END\n      as apnumrange, \n  6 as rownumber,\n  apnumrange6 as clientnum from ap_wirless_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥10GB' \n         WHEN datatype = 2 THEN '≥50GB'  \n         WHEN datatype = 3 THEN '≥100GB'  \n         WHEN datatype = 4 THEN '≥500GB'  \n         WHEN datatype = 5 THEN '≥1TB'  \n         ELSE 'other' END\n      as apnumrange, \n  7 as rownumber,\n  apnumrange7 as clientnum from ap_wirless_traffic_distribution WHERE 1=1\n) distribution"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "c23cc624-50cb-4d1c-bbbe-3e7e50ac1e07",
+            "userId": "1",
+            "name": "ap_wirless_traffic_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 17:12:46.806993",
+            "updateTime": "2019-02-22 17:20:06.653",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "statoap_rx_data_bytes",
+                            "id": "6e491551-1d94-e2de-b70a-77fd5e8c4aa5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_statoap_rx_data_bytes",
+                            "id": "20573d04-4fcb-4fb6-49c0-d17bb505c455",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_data_bytes",
+                            "id": "fe7f6fe5-f6a5-62b7-8aca-9254fea1dbbf",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_aptosta_tx_data_bytes",
+                            "id": "c5464d3d-cb7a-cb66-fcb9-1e47a7de17d8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_data_bytes_mb",
+                            "id": "a225ec71-35db-c1b0-c873-d22ec48cab22",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_statoap_rx_data_bytes_mb",
+                            "id": "366fc4f4-e881-4040-0e4b-44868de9a70f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_aptosta_tx_data_bytes_mb",
+                            "id": "c806f7a9-8a7d-0c43-0a84-1b2c0804fc2e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_rx_data_bytes_mb",
+                            "id": "f07de73a-c03d-de2d-c3f9-242d033fa97f",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "59572cce-ae7f-d8dc-7481-59b04541537b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "eaafae4e-ab64-eb96-61b5-81ac83be6da0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "3afd6fde-8bb6-2302-5524-f448c100ade9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "88087e9a-68e6-82af-95a5-8cb623a707f6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "1a04f16b-ee26-46e4-a67e-d2f81e055151",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "5b72a11a-4927-7fd9-1c92-d00896a3c477",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "24160020-dd95-9852-3a89-f0cbcaab29e5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "8c07996a-6e77-16dd-58ad-e64d7deed8ab",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "aptosta_tx_data_bytes",
+                    "aptosta_tx_data_bytes_mb",
+                    "areaid",
+                    "avg_aptosta_tx_data_bytes",
+                    "avg_aptosta_tx_data_bytes_mb",
+                    "avg_statoap_rx_data_bytes",
+                    "avg_statoap_rx_data_bytes_mb",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "statoap_rx_data_bytes",
+                    "statoap_rx_data_bytes_mb",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "SELECT areaid,hour,day,weekstart,weekend,month,year,datatype,\nstatoap_rx_data_bytes,\naptosta_tx_data_bytes,\navg_statoap_rx_data_bytes,\navg_aptosta_tx_data_bytes,\nround(CAST(CAST(statoap_rx_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) statoap_rx_data_bytes_mb,\nround(CAST(CAST(aptosta_tx_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) aptosta_tx_data_bytes_mb,\nround(CAST(CAST(avg_statoap_rx_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) avg_statoap_rx_data_bytes_mb,\nround(CAST(CAST(avg_aptosta_tx_data_bytes as DECIMAL)/(1024*1024) as DECIMAL ), 3) avg_aptosta_tx_data_bytes_mb\nFROM ap_wirless_traffic_trend WHERE 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "abe066ef-7ae6-472c-8e89-11e0b7bd0f2a",
+            "userId": "1",
+            "name": "ap_wirless_tx_traffic_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-10 19:47:28.470693",
+            "updateTime": "2019-02-21 11:35:58.97",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "apnum",
+                            "id": "9857fe3f-c38e-31b9-7d4c-76b44455f829",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "5cec8c40-dfe2-2009-45c1-77c2f3dd3ae3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "6859ee3d-8d27-7091-533d-3348dcc0bdbd",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "63cdef7a-ecc2-6267-6f9e-8600154aa969",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "cfa01fbd-4d70-ff8e-24af-18ae92897526",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "56134eb3-fc81-a02a-ae55-1e03a7f2d9cb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "afb02839-7f80-1856-4415-32e374298c87",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "fce3b47d-f330-233b-fe39-529f0c7db205",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "2f7379e8-b9b5-224a-42f2-77aa3c5fca5a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "apnumrange",
+                            "alias": "流量区间",
+                            "id": "61272d44-3287-5d25-e213-5e853fae7676",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "apnum",
+                    "apnumrange",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,apnumrange,apnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '<50MB' \n         WHEN datatype = 2 THEN '<100MB' \n         WHEN datatype = 3 THEN '<500MB' \n         WHEN datatype = 4 THEN '<1GB' \n         WHEN datatype = 5 THEN '<5GB' \n         ELSE 'other' END\n      as apnumrange, \n  1 as rownumber,\n  apnumrange1 as apnum from ap_wirless_tx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100MB' \n         WHEN datatype = 2 THEN '100-500MB' \n         WHEN datatype = 3 THEN '500MB-1GB' \n         WHEN datatype = 4 THEN '1-5GB' \n         WHEN datatype = 5 THEN '5-10GB'  \n         ELSE 'other' END\n      as apnumrange, \n  2 as rownumber,\n  apnumrange2 as clientnum from ap_wirless_tx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-500MB' \n         WHEN datatype = 2 THEN '500MB-1GB' \n         WHEN datatype = 3 THEN '1-5GB' \n         WHEN datatype = 4 THEN '5-10GB' \n         WHEN datatype = 5 THEN '10-50GB'  \n         ELSE 'other' END\n      as apnumrange, \n  3 as rownumber,\n  apnumrange3 as clientnum from ap_wirless_tx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '500MB-1GB' \n         WHEN datatype = 2 THEN '1-5GB' \n         WHEN datatype = 3 THEN '5-10GB' \n         WHEN datatype = 4 THEN '10-50GB'  \n         WHEN datatype = 5 THEN '50-100GB'  \n         ELSE 'other' END\n      as apnumrange, \n  4 as rownumber,\n  apnumrange4 as clientnum from ap_wirless_tx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '1-5GB' \n         WHEN datatype = 2 THEN '5-10GB' \n         WHEN datatype = 3 THEN '10-50GB'  \n         WHEN datatype = 4 THEN '50-100GB'  \n         WHEN datatype = 5 THEN '100-500GB'  \n         ELSE 'other' END\n      as apnumrange, \n  5 as rownumber,\n  apnumrange5 as clientnum from ap_wirless_tx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5G-10GB' \n         WHEN datatype = 2 THEN '10-50GB'  \n         WHEN datatype = 3 THEN '50-100GB'  \n         WHEN datatype = 4 THEN '100-500GB'  \n         WHEN datatype = 5 THEN '500GB-1TB'  \n         ELSE 'other' END\n      as apnumrange, \n  6 as rownumber,\n  apnumrange6 as clientnum from ap_wirless_tx_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥10GB' \n         WHEN datatype = 2 THEN '≥50GB'  \n         WHEN datatype = 3 THEN '≥100GB'  \n         WHEN datatype = 4 THEN '≥500GB'  \n         WHEN datatype = 5 THEN '≥1TB'  \n         ELSE 'other' END\n      as apnumrange, \n  7 as rownumber,\n  apnumrange7 as clientnum from ap_wirless_tx_traffic_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "98050785-7d4d-4b68-840d-6e99f66d0f5d",
+            "userId": "1",
+            "name": "area_statiistic",
+            "categoryName": "资源统计",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-10 17:13:27.437684",
+            "updateTime": "2018-12-26 10:32:19.731",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "areanum",
+                            "id": "a6bad0e6-0345-4b89-c5d4-5e04309274cf",
+                            "type": "column"
+                        },
+                        {
+                            "column": "growthareanum",
+                            "id": "26210fe3-b330-61ff-5f48-748f5574a95d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "circular_growth_ratio",
+                            "id": "4773420b-c8fb-d827-6234-2927c366425e",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "6629e531-23e8-43c7-8e8e-a18302b04644",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "0cbf4495-f8d1-63f2-da39-960e39ea3ad1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "d96bdfcb-80fe-d810-67a1-8550eded48f6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "19680288-7a44-8dd5-3578-0fa5a40d8aeb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "84d23386-17eb-6733-3b63-c859252dfeeb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "b5ea863f-46a6-379c-0d8b-64086e5113eb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "0b5e092d-646c-17b3-749e-374dc16710cc",
+                            "type": "column"
+                        },
+                        {
+                            "column": "userid",
+                            "id": "0b442b78-036f-c5b4-ca05-4b1239d12198",
+                            "type": "column"
+                        },
+                        {
+                            "column": "arealevel",
+                            "alias": "区域类型",
+                            "id": "02372311-4df0-abe4-c4e7-bfd197fb4d91",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "arealevel",
+                    "areanum",
+                    "circular_growth_ratio",
+                    "datatype",
+                    "day",
+                    "growthareanum",
+                    "hour",
+                    "month",
+                    "userid",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nconcat(arealevel,'级区域') as arealevel,\nuserid,hour,day,weekstart,weekend,month,year,datatype,(areanum - growthareanum) as areanum,growthareanum,\nround(CAST(circular_growth_ratio*100 as DECIMAL ), 2) circular_growth_ratio \nfrom area_statistic where 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "32ebce7e-8e22-45b3-955a-431500ec2e91",
+            "userId": "1",
+            "name": "client_connect_time_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 09:36:30.20778",
+            "updateTime": "2019-03-04 16:42:35.664",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "avgsesonlinetime",
+                            "id": "8a373d20-a6e6-f805-37c1-32264a1d6c95",
+                            "type": "column"
+                        },
+                        {
+                            "column": "sessionnum",
+                            "id": "354b65f8-fdf1-6aff-d824-d640c58c9ed7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "totalsessionnum",
+                            "id": "8bc76e91-816a-006e-52e9-eed358973672",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "17bec0f6-28ee-13ed-26d5-6ae0614ce94e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "b93729b2-70b9-b87b-16c5-21a850d68901",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "b172559c-bfdc-9156-4cc0-3a60a2d294d8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "5ee9924c-5f2f-e98a-4efa-bee72d2001af",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "009f4a55-2d8b-c4f6-b284-42c6a86b65d2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "b867e5b0-3514-5e29-aa95-f4e0ab19144f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "4d0502b4-e919-fe17-7dc2-58bb8ed31fc5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "c236d4f1-4237-d786-abcd-2391b50ecc3c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "sessionnumrange",
+                            "alias": "时长区间",
+                            "id": "7324d0ad-bc2c-5142-3a43-98c1e005ffbf",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "avgsesonlinetime",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "sessionnum",
+                    "sessionnumrange",
+                    "totalsessionnum",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,sessionnumrange,sessionnum,rownumber,avgsesonlinetime,totalsessionnum\nFROM (\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,avgsesonlinetime,totalsessionnum,\n'<1min' as sessionnumrange, \n'01' as rownumber,\nsessionnum1 as sessionnum from client_connect_time_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype, avgsesonlinetime,totalsessionnum,\n'1-5min' as sessionnumrange, \n'02' as rownumber,\nabs(0-sessionnum2-sessionnum3-sessionnum4-sessionnum5) as sessionnum from client_connect_time_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype, avgsesonlinetime,totalsessionnum,\n'5-10min' as sessionnumrange, \n'03' as rownumber,\nabs(0-sessionnum6-sessionnum7-sessionnum8) as sessionnum from client_connect_time_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype, avgsesonlinetime,totalsessionnum,\n'10-20min' as sessionnumrange, \n'04' as rownumber,\nabs(0-sessionnum9-sessionnum10) as sessionnum from client_connect_time_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype, avgsesonlinetime,totalsessionnum,\n'20-30min' as sessionnumrange, \n'05' as rownumber,\nsessionnum11 as sessionnum from client_connect_time_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype, avgsesonlinetime,totalsessionnum,\n'30-60min' as sessionnumrange, \n'06' as rownumber,\nsessionnum12 as sessionnum from client_connect_time_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype, avgsesonlinetime,totalsessionnum,\n'≥60min' as sessionnumrange, \n'07' as rownumber,\nsessionnum13 as sessionnum from client_connect_time_distribution WHERE 1=1\n) distribution"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": [
+                    {
+                        "alias": "终端占比",
+                        "id": "b6dedc22-7101-e518-bda6-cfc3bc749275",
+                        "type": "exp",
+                        "exp": "COALESCE(round(CAST((CAST(sum(sessionnum) as DECIMAL) / CAST(NULLIF(sum(totalsessionnum), 0) as DECIMAL)) * 100 as DECIMAL), 2), 0)"
+                    }
+                ]
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "df9164d2-f6ad-4cfd-83e4-02278a40e8e5",
+            "userId": "1",
+            "name": "client_online_time_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-05 12:47:30.777842",
+            "updateTime": "2019-03-04 16:28:38.589",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "clientnum",
+                            "id": "1c530dda-c871-47c4-9cbd-60408c52f70a",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "areaid",
+                            "id": "8a157e0d-0b63-4328-963a-00ff11ed1db2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "9af34045-0c6c-4d5f-acfa-6a4e8555d89a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "6460e61c-0889-4b4e-935e-0b29630f4cc2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "f9ea28f9-e11a-4835-b02f-ef73b6c294bc",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "8d83cf16-5453-4fbb-a769-751d3a4858cc",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "7d5c3c25-9656-4d0f-b1f8-72ee4e9fb2f7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "7f46d251-301f-4a17-8f38-4859a580ecca",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "70828982-3784-40fe-9d20-a1c88afdba3f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "clientnumrange",
+                            "alias": "时长区间",
+                            "id": "8075786b-05f0-4133-9937-6f79d0573e07",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "clientnum",
+                    "clientnumrange",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,clientnumrange,clientnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype in (1,2,3) THEN '<5min' \n         WHEN datatype in (4,5)   THEN '<30min'\n         ELSE 'other' END\n      as clientnumrange, \n  1 as rownumber,\n  clientrange1 as clientnum from client_online_time_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype in (1)   THEN '5-10min' \n         WHEN datatype in (2,3) THEN '5-30min'\n         WHEN datatype in (4,5) THEN '30min-1h'\n         ELSE 'other' END\n      as clientnumrange, \n  2 as rownumber,\n  clientrange2 as clientnum from client_online_time_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype in (1) THEN '10-15min' \n         WHEN datatype in (2,3)   THEN '30min-1h'\n         WHEN datatype in (4)   THEN '1-10h'\n         WHEN datatype in (5)   THEN '1h-1d'\n         ELSE 'other' END\n      as clientnumrange, \n  3 as rownumber,\n  clientrange3 as clientnum from client_online_time_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '15-20min' \n         WHEN datatype = 2 THEN '1-2h' \n         WHEN datatype = 3 THEN '1-10h' \n         WHEN datatype = 4 THEN '10h-1d' \n         WHEN datatype = 5 THEN '1-5d' \n         ELSE 'other' END\n      as clientnumrange, \n  4 as rownumber,\n  clientrange4 as clientnum from client_online_time_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '20-30min' \n         WHEN datatype = 2 THEN '2-5h' \n         WHEN datatype = 3 THEN '10h-1d' \n         WHEN datatype = 4 THEN '1-2d' \n         WHEN datatype = 5 THEN '5-10d' \n         ELSE 'other' END\n      as clientnumrange, \n  5 as rownumber,\n  clientrange5 as clientnum from client_online_time_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '30-40min' \n         WHEN datatype = 2 THEN '5-10h' \n         WHEN datatype = 3 THEN '1-2d' \n         WHEN datatype = 4 THEN '2-5d' \n         WHEN datatype = 5 THEN '10-50d' \n         ELSE 'other' END\n      as clientnumrange, \n  6 as rownumber,\n  clientrange6 as clientnum from client_online_time_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥40min' \n         WHEN datatype = 2 THEN '≥10h' \n         WHEN datatype = 3 THEN '≥2d' \n         WHEN datatype = 4 THEN '≥5d' \n         WHEN datatype = 5 THEN '≥50d' \n         ELSE 'other' END\n      as clientnumrange, \n  7 as rownumber,\n  clientrange7 as clientnum from client_online_time_distribution WHERE 1=1\n) distribution;"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "4d603779-93f8-4340-8972-1c434bfd1ec8",
+            "userId": "1",
+            "name": "client_online_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-05 12:47:30.777842",
+            "updateTime": "2018-09-17 12:30:07.866",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "maxclientnum",
+                            "id": "0b63bb2a-363f-9e24-308a-3d6a0a3d74a9",
+                            "type": "column"
+                        },
+                        {
+                            "column": "minclientnum",
+                            "id": "061936c1-6d66-3574-9460-ca08c4ea5ca4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avgclientnum",
+                            "id": "cc91cba0-09a8-4246-abf0-67f7c0231b15",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "72a9c813-f53f-b92c-5c72-2ad3f2a86e5c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "fad64cf0-aa7c-b040-01cb-acb229311727",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "bde39dad-8cd0-ac2b-35bd-08045254d625",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "ae2eefff-968e-be73-1226-1c7d43cb464f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "45cb30fc-a7f9-a305-6c5f-d35f358d4bb7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "eddf1ef2-0281-d283-71a8-e4dba3a0fae2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "55b55bc2-7c38-0239-5f4a-47db9ff4a618",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "bc50f8e4-666d-09d4-a1ed-81ba932662a1",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "avgclientnum",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "maxclientnum",
+                    "minclientnum",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,maxclientnum,minclientnum,avgclientnum from client_online_trend WHERE 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "0f55c815-b002-4c05-ae12-c5bd08071b40",
+            "userId": "1",
+            "name": "client_rate_rx_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 11:39:28.747724",
+            "updateTime": "2019-02-21 12:45:47.102",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "sessionnum",
+                            "id": "e3a1f49c-ed1e-c63e-46fc-77a29b550105",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "aa829b38-2b42-318c-5ffe-46e1a34bcc2f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "d653d4d7-2a35-ba09-c22e-e48fb61d3a22",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "8ae40307-6473-bda4-3795-564c1c2eb09d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "15c3fae2-7493-ff33-4c8c-7c2f72f9db14",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "8c37d80c-e8b0-8d05-0e65-241f14eb1ba1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "41ee3e7d-3ec0-c257-f3b7-8090d3051a35",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "927b5169-f975-4bc5-09ae-6588633bb65b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "09523b9b-2335-c115-03c7-85dbb066e217",
+                            "type": "column"
+                        },
+                        {
+                            "column": "sessionnumrange",
+                            "id": "41164943-cecb-3dda-6f9a-eb89cb78f537",
+                            "type": "column"
+                        },
+                        {
+                            "column": "totalsessionnum",
+                            "id": "97274b48-e060-4f5d-0585-a61a4d67fd92",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "sessionnum",
+                    "sessionnumrange",
+                    "totalsessionnum",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,sessionnumrange,sessionnum,rownumber\nFROM (\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'<100Kbps' as sessionnumrange, \n1 as rownumber,\nsessionnum1 as sessionnum from client_rate_rx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'100-200Kbps' as sessionnumrange, \n2 as rownumber,\nsessionnum2 as sessionnum from client_rate_rx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'200-500Kbps' as sessionnumrange, \n3 as rownumber,\nsessionnum3 as sessionnum from client_rate_rx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'500Kbps-1Mbps' as sessionnumrange, \n4 as rownumber,\nsessionnum4 as sessionnum from client_rate_rx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'1-2Mbps' as sessionnumrange, \n5 as rownumber,\nsessionnum5 as sessionnum from client_rate_rx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'2-5Mbps' as sessionnumrange, \n6 as rownumber,\nsessionnum6 as sessionnum from client_rate_rx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'≥5Mbps' as sessionnumrange, \n7 as rownumber,\nsessionnum7 as sessionnum from client_rate_rx_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": [
+                    {
+                        "alias": "终端占比",
+                        "id": "d3e47dd1-cfe0-4d68-9f92-e6f190f163c9",
+                        "type": "exp",
+                        "exp": "round(CAST((CAST(sum(sessionnum) as DECIMAL) / CAST(sum(totalsessionnum) as DECIMAL)) * 100 as DECIMAL), 2)"
+                    }
+                ]
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "68854cd1-d2b7-46d5-9647-d40d7c9fc21a",
+            "userId": "1",
+            "name": "client_rate_rx_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 11:02:31.960474",
+            "updateTime": "2019-02-01 16:24:54.552",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "avg_statoap_session_rx_data_rate",
+                            "id": "eb079d02-79bc-344d-587d-2648b1396c97",
+                            "type": "column"
+                        },
+                        {
+                            "column": "max_statoap_session_rx_data_rate",
+                            "id": "9c05756a-59a9-16b2-0304-fe50578b7953",
+                            "type": "column"
+                        },
+                        {
+                            "column": "min_statoap_session_rx_data_rate",
+                            "id": "1a99126d-3af9-a566-8e77-741043c35068",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_statoap_session_rx_data_rate_kbps",
+                            "id": "46ea0fe1-7d80-1d0c-108a-3023695a697d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "max_statoap_session_rx_data_rate_kbps",
+                            "id": "78a8f79c-4d67-92c5-3d67-24a9fb92b72f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "min_statoap_session_rx_data_rate_kbps",
+                            "id": "f917f09a-a3de-8195-47e4-ec35338e747d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_statoap_session_rx_data_rate_mbps",
+                            "id": "bf899e4b-df49-47f3-c4da-1e18b2daad8e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "max_statoap_session_rx_data_rate_mbps",
+                            "id": "c0d6782a-eaf8-406f-b80e-d627f93fac06",
+                            "type": "column"
+                        },
+                        {
+                            "column": "min_statoap_session_rx_data_rate_mbps",
+                            "id": "0ca7587c-e681-c8a0-e200-a77a60af7901",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "615b44cb-88cf-cffd-21c8-cb2c7aba9d2e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "7f2370eb-418c-16ac-e877-cd16ebf853c3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "0b668e98-6be0-5c3f-c930-30d9a6a51c1a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "7fe02aac-bc51-7d1c-9e50-635d18386d50",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "7ccd22fd-9858-5042-9575-726947503762",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "3e306461-c52d-a49b-fefa-f089a7001822",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "a81373da-0bde-c1d4-d5bd-85036238b008",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "51be8fd6-5c61-eefd-63ff-6f8c90c1b34f",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "avg_statoap_session_rx_data_rate",
+                    "avg_statoap_session_rx_data_rate_kbps",
+                    "avg_statoap_session_rx_data_rate_mbps",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "max_statoap_session_rx_data_rate",
+                    "max_statoap_session_rx_data_rate_kbps",
+                    "max_statoap_session_rx_data_rate_mbps",
+                    "min_statoap_session_rx_data_rate",
+                    "min_statoap_session_rx_data_rate_kbps",
+                    "min_statoap_session_rx_data_rate_mbps",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nareaid,hour,day,weekstart,weekend,month,year,datatype,\nmax_statoap_session_rx_data_rate,\nmin_statoap_session_rx_data_rate,\navg_statoap_session_rx_data_rate, \nround(CAST(CAST(max_statoap_session_rx_data_rate as DECIMAL)/(1024) as DECIMAL ), 3) max_statoap_session_rx_data_rate_kbps,\nround(CAST(CAST(min_statoap_session_rx_data_rate as DECIMAL)/(1024) as DECIMAL ), 3) min_statoap_session_rx_data_rate_kbps,\nround(CAST(CAST(avg_statoap_session_rx_data_rate as DECIMAL)/(1024) as DECIMAL ), 3) avg_statoap_session_rx_data_rate_kbps,\nround(CAST(CAST(min_statoap_session_rx_data_rate as DECIMAL)/(1024*1024) as DECIMAL ), 3) min_statoap_session_rx_data_rate_mbps,\nround(CAST(CAST(max_statoap_session_rx_data_rate as DECIMAL)/(1024*1024) as DECIMAL ), 3) max_statoap_session_rx_data_rate_mbps,\nround(CAST(CAST(avg_statoap_session_rx_data_rate as DECIMAL)/(1024*1024) as DECIMAL ), 3) avg_statoap_session_rx_data_rate_mbps\nfrom client_rate_rx_trend where 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "97d5c015-4a20-4637-8688-7fa132efb228",
+            "userId": "1",
+            "name": "client_rate_tx_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 14:02:41.918161",
+            "updateTime": "2019-02-21 12:33:37.055",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "sessionnum",
+                            "id": "8b324030-f646-dc6a-cbae-c27af7020bd4",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "areaid",
+                            "id": "07778ba6-e20e-e389-da49-f2239e19533b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "datatype",
+                            "id": "7d1a709c-90a6-27a7-e330-97c89fdd5e82",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "ad7a20ff-3e74-6580-6b0d-d2c2126c5d5a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "629a47de-2339-0621-fe65-4240f5a30916",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "3d595a6d-6eb4-6be3-751b-52fe32e53a85",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "e1b1bd13-19c9-c8af-b70e-88684dc4e8e6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "11c17612-2070-625a-3541-b4675139e1ff",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "0f8d769e-9350-4581-5834-4d9a6076bdd0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "sessionnumrange",
+                            "id": "dd91cb55-209f-fbf6-ae33-aefd66bbaac8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "totalsessionnum",
+                            "id": "06b7d076-00b5-35e0-065a-aafe69f112f8",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "sessionnum",
+                    "sessionnumrange",
+                    "totalsessionnum",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,sessionnumrange,sessionnum,rownumber\nFROM (\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'<100Kbps' as sessionnumrange, \n1 as rownumber,\nsessionnum1 as sessionnum from client_rate_tx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'100-200Kbps' as sessionnumrange, \n2 as rownumber,\nsessionnum2 as sessionnum from client_rate_tx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'200-500Kbps' as sessionnumrange, \n3 as rownumber,\nsessionnum3 as sessionnum from client_rate_tx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'500Kbps-1Mbps' as sessionnumrange, \n4 as rownumber,\nsessionnum4 as sessionnum from client_rate_tx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'1-2Mbps' as sessionnumrange, \n5 as rownumber,\nsessionnum5 as sessionnum from client_rate_tx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'2-5Mbps' as sessionnumrange, \n6 as rownumber,\nsessionnum6 as sessionnum from client_rate_tx_distribution WHERE 1=1\nUNION ALL\nSELECT areaid,hour,day,weekstart,weekend,month,year,datatype,totalsessionnum,\n'≥5Mbps' as sessionnumrange, \n7 as rownumber,\nsessionnum7 as sessionnum from client_rate_tx_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": [
+                    {
+                        "alias": "终端发送速率占比",
+                        "id": "553a314f-4fe2-8a43-93e6-baee847cc84b",
+                        "type": "exp",
+                        "exp": "round(CAST((CAST(sum(sessionnum) as DECIMAL) / CAST(sum(totalsessionnum) as DECIMAL)) * 100 as DECIMAL), 2)"
+                    }
+                ]
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "c2fe44fa-209c-49d0-82d9-e7917a7bea97",
+            "userId": "1",
+            "name": "client_rate_tx_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 13:39:30.398179",
+            "updateTime": "2019-02-01 16:45:17.301",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "avg_aptosta_session_tx_data_rate",
+                            "id": "f8960251-c808-31ad-05c1-d943abd8c92c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "max_aptosta_session_tx_data_rate",
+                            "id": "4e0e473d-e32f-f28e-1566-6d83a441ccad",
+                            "type": "column"
+                        },
+                        {
+                            "column": "min_aptosta_session_tx_data_rate",
+                            "id": "ec4af1fb-e4a5-44ee-df6c-f05255c290e6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_aptosta_session_tx_data_rate_kbps",
+                            "id": "1980ddab-d4e2-05b8-da9f-6f45d23a42d2",
+                            "type": "column"
+                        },
+                        {
+                            "column": "max_aptosta_session_tx_data_rate_kbps",
+                            "id": "a1bdbb77-08c1-0597-a474-16ecaa1bfb4e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "min_aptosta_session_tx_data_rate_kbps",
+                            "id": "0651a799-1731-4f75-9963-be3a775b72f7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "avg_aptosta_session_tx_data_rate_mbps",
+                            "id": "df9d5dc2-4b97-ced1-f542-4095cb0922a5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "max_aptosta_session_tx_data_rate_mbps",
+                            "id": "728e91a1-56ac-2e45-950f-6e85086e29eb",
+                            "type": "column"
+                        },
+                        {
+                            "column": "min_aptosta_session_tx_data_rate_mbps",
+                            "id": "e1db6433-8cda-d132-588a-60dde5d0a95f",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "6c742d8c-e893-a600-9160-d4e12f209584",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "162a7b8d-5c7e-c699-ac2a-4abbc7a42d54",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "fa5908be-d67f-2413-098e-b91fe67b65e5",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "23895fdb-d926-eaae-5b5e-b77f49b8971e",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "dc132f31-ddea-d29c-a295-1fef89624d5d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "15a58685-c8e9-4e91-07ec-f2331ae0d07d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "87077ca6-5d1b-909d-a0e4-b88922b18b20",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "ac30a503-7277-d7a8-adcf-47763bd3aa09",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "avg_aptosta_session_tx_data_rate",
+                    "avg_aptosta_session_tx_data_rate_kbps",
+                    "avg_aptosta_session_tx_data_rate_mbps",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "max_aptosta_session_tx_data_rate",
+                    "max_aptosta_session_tx_data_rate_kbps",
+                    "max_aptosta_session_tx_data_rate_mbps",
+                    "min_aptosta_session_tx_data_rate",
+                    "min_aptosta_session_tx_data_rate_kbps",
+                    "min_aptosta_session_tx_data_rate_mbps",
+                    "month",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select areaid,hour,day,weekstart,weekend,month,year,datatype,\nmax_aptosta_session_tx_data_rate,\nmin_aptosta_session_tx_data_rate,\navg_aptosta_session_tx_data_rate,\nround(CAST(CAST(max_aptosta_session_tx_data_rate as DECIMAL)/(1024) as DECIMAL ), 3) max_aptosta_session_tx_data_rate_kbps,\nround(CAST(CAST(min_aptosta_session_tx_data_rate as DECIMAL)/(1024) as DECIMAL ), 3) min_aptosta_session_tx_data_rate_kbps,\nround(CAST(CAST(avg_aptosta_session_tx_data_rate as DECIMAL)/(1024) as DECIMAL ), 3) avg_aptosta_session_tx_data_rate_kbps,\nround(CAST(CAST(max_aptosta_session_tx_data_rate as DECIMAL)/(1024*1024) as DECIMAL ), 3) max_aptosta_session_tx_data_rate_mbps,\nround(CAST(CAST(avg_aptosta_session_tx_data_rate as DECIMAL)/(1024*1024) as DECIMAL ), 3) avg_aptosta_session_tx_data_rate_mbps,\nround(CAST(CAST(min_aptosta_session_tx_data_rate as DECIMAL)/(1024*1024) as DECIMAL ), 3) min_aptosta_session_tx_data_rate_mbps\nfrom client_rate_tx_trend where 1=1"
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "b3e2ab39-f334-4e81-9665-57f977d6cc52",
+            "userId": "1",
+            "name": "client_traffic_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-17 15:02:20.379284",
+            "updateTime": "2019-02-21 11:39:28.439",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "clientnum",
+                            "id": "2f9a40ad-075b-371d-efb1-8fc79c0da597",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "07662184-ff45-67a1-1fd8-41bf97b4e324",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "a7341012-9b4e-8931-a39f-30b259db7997",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "922ad74d-1e0d-0585-2acb-8611b49a65c3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "78b0ff1a-d9b1-cce8-dff8-ef4dfd13390a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "3583b77a-2adb-40a2-1624-cf7f2552e1e0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "1c6c36cf-0603-b338-4fb2-da237049d93b",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "08e2b7e8-7491-827c-7b17-aaae817061a1",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "6b59ead8-ca0e-dc14-1c4f-985b6659bdba",
+                            "type": "column"
+                        },
+                        {
+                            "column": "clientnumrange",
+                            "alias": "流量区间",
+                            "id": "ecbafb7c-9a39-840d-aa8c-f83f71245f0e",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "clientnum",
+                    "clientnumrange",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "\nselect areaid,hour,day,weekstart,weekend,month,year,datatype,clientnumrange,clientnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype in (1,2,3,4,5) THEN '<1MB' \n         ELSE 'other' END\n      as clientnumrange, \n  1 as rownumber,\n  clientrange1 as clientnum from client_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1   THEN '1-5MB' \n         WHEN datatype in (2,3,4,5) THEN '1-10MB' \n         ELSE 'other' END\n      as clientnumrange, \n  2 as rownumber,\n  clientrange2 as clientnum from client_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5-10MB' \n         WHEN datatype = 2   THEN '10-50MB' \n         WHEN datatype in (3,4,5)   THEN '10-100MB' \n         ELSE 'other' END\n      as clientnumrange, \n  3 as rownumber,\n  clientrange3 as clientnum from client_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '10-50MB' \n         WHEN datatype = 2   THEN '50-100MB' \n         WHEN datatype = 3   THEN '100-500MB' \n\t\t WHEN datatype in (4,5)   THEN '100MB-1GB' \n         ELSE 'other' END\n      as clientnumrange, \n  4 as rownumber,\n  clientrange4 as clientnum from client_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100MB' \n         WHEN datatype = 2   THEN '100-500MB' \n         WHEN datatype = 3   THEN '500MB-1GB' \n\t\t WHEN datatype = 4   THEN '1G-5GB' \n\t\t WHEN datatype = 5   THEN '1G-10GB' \n         ELSE 'other' END\n      as clientnumrange, \n  5 as rownumber,\n  clientrange5 as clientnum from client_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-500MB' \n         WHEN datatype = 2   THEN '500MB-1GB' \n         WHEN datatype = 3   THEN '1-5GB' \n\t\t WHEN datatype = 4   THEN '5-10GB' \n\t\t WHEN datatype = 5   THEN '10-50GB' \n         ELSE 'other' END\n      as clientnumrange, \n  6 as rownumber,\n  clientrange6 as clientnum from client_traffic_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥500MB' \n         WHEN datatype = 2   THEN '≥1GB' \n         WHEN datatype = 3   THEN '≥5GB' \n\t\t WHEN datatype = 4   THEN '≥10GB' \n\t\t WHEN datatype = 5   THEN '≥50GB' \n         ELSE 'other' END\n      as clientnumrange, \n  7 as rownumber,\n  clientrange7 as clientnum from client_traffic_distribution WHERE 1=1\n) distribution;"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "22887e8a-f063-4b4b-84f2-6a1c6eee3980",
+            "userId": "1",
+            "name": "client_traffic_rx_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 10:49:12.248081",
+            "updateTime": "2019-02-21 11:42:29.393",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "clientnum",
+                            "id": "ba7005a9-d3a3-2063-27f3-c974acf85169",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "811eed3b-c315-ae06-9531-298cf218693c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "43d2d6a7-f133-69ff-ab4a-69e02159c4e0",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "b623e7b3-692e-2c6b-9bb3-6b4acc0df15f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "7e17b5da-e108-c18a-03ca-a26eb5cc8f7c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "0bb3fb5c-7e0b-cd2e-7f54-3202830cf49d",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "ed8cd1f5-a202-da75-6215-018577c2a311",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "df1e9702-b5ac-7f02-0223-78abaddccb69",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "9787675f-5f05-c98a-9df7-f0ee958f0ff7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "clientnumrange",
+                            "alias": "流量区间",
+                            "id": "9d2ef7b6-247e-34e2-0cc0-e1338b3d98a2",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "clientnum",
+                    "clientnumrange",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "\nselect areaid,hour,day,weekstart,weekend,month,year,datatype,clientnumrange,clientnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype in (1,2,3,4,5) THEN '<1MB' \n         ELSE 'other' END\n      as clientnumrange, \n  1 as rownumber,\n  clientrange1 as clientnum from client_traffic_rx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1   THEN '1-5MB' \n         WHEN datatype in (2,3,4,5) THEN '1-10MB' \n         ELSE 'other' END\n      as clientnumrange, \n  2 as rownumber,\n  clientrange2 as clientnum from client_traffic_rx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5-10MB' \n         WHEN datatype = 2   THEN '10-50MB' \n         WHEN datatype in (3,4,5)   THEN '10-100MB' \n         ELSE 'other' END\n      as clientnumrange, \n  3 as rownumber,\n  clientrange3 as clientnum from client_traffic_rx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '10-50MB' \n         WHEN datatype = 2   THEN '50-100MB' \n         WHEN datatype = 3   THEN '100-500MB' \n\t\t WHEN datatype in (4,5)   THEN '100MB-1GB' \n         ELSE 'other' END\n      as clientnumrange, \n  4 as rownumber,\n  clientrange4 as clientnum from client_traffic_rx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100MB' \n         WHEN datatype = 2   THEN '100-500MB' \n         WHEN datatype = 3   THEN '500MB-1GB' \n\t\t WHEN datatype = 4   THEN '1-5GB' \n\t\t WHEN datatype = 5   THEN '1-10GB' \n         ELSE 'other' END\n      as clientnumrange, \n  5 as rownumber,\n  clientrange5 as clientnum from client_traffic_rx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-500MB' \n         WHEN datatype = 2   THEN '500MB-1GB' \n         WHEN datatype = 3   THEN '1-5GB' \n\t\t WHEN datatype = 4   THEN '5-10GB' \n\t\t WHEN datatype = 5   THEN '10-50GB' \n         ELSE 'other' END\n      as clientnumrange, \n  6 as rownumber,\n  clientrange6 as clientnum from client_traffic_rx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥500MB' \n         WHEN datatype = 2   THEN '≥1GB' \n         WHEN datatype = 3   THEN '≥5GB' \n\t\t WHEN datatype = 4   THEN '≥10GB' \n\t\t WHEN datatype = 5   THEN '≥50GB' \n         ELSE 'other' END\n      as clientnumrange, \n  7 as rownumber,\n  clientrange7 as clientnum from client_traffic_rx_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "2f56c8f5-403d-4ab7-94f9-b7ec3496c428",
+            "userId": "1",
+            "name": "client_traffic_trend",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-09-17 11:45:39.405262",
+            "updateTime": "2018-10-25 14:00:49.655",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "aptosta_tx_data_bytes",
+                            "id": "dfcc046e-3faf-1f58-224a-f68d4c7c4cfe",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_tx_data_bytes",
+                            "id": "756f06e8-0513-265c-592d-0525e2fcae3a",
+                            "type": "column"
+                        },
+                        {
+                            "column": "aptosta_tx_data_bytes_mb",
+                            "id": "34133123-7469-63f5-f1aa-09bbb10793a4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "statoap_tx_data_bytes_mb",
+                            "id": "c5d0061a-2845-4c58-fa8e-931267e69eb0",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "88bf4a45-7da7-74de-d339-5542703cafdf",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "af3fd6ab-6dd3-04d0-85eb-aac2b5523e7c",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "542b6b52-e716-ecfe-0397-b5517d7a7cc8",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "d46a7f18-4e0d-76e9-e8da-ef3a129c73c4",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "061ceac0-95fc-9691-0337-dad532608da6",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "f315155e-729c-df35-c8e7-474c45edd059",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "132e0e30-2e91-de7b-d3e8-9c92333a341f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "634804e0-f8c5-7c17-bdd6-135ead27cd58",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "aptosta_tx_data_bytes",
+                    "aptosta_tx_data_bytes_mb",
+                    "areaid",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "statoap_tx_data_bytes",
+                    "statoap_tx_data_bytes_mb",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "select \nareaid,hour,day,weekstart,weekend,month,year,datatype,\naptosta_tx_data_bytes,\nstatoap_tx_data_bytes,\nround(CAST(CAST(aptosta_tx_data_bytes AS DECIMAL)/(1024*1024) as DECIMAL ), 3) as aptosta_tx_data_bytes_mb,\nround(CAST(CAST(statoap_tx_data_bytes AS DECIMAL)/(1024*1024) as DECIMAL ), 3) as statoap_tx_data_bytes_mb \nfrom client_traffic_trend WHERE 1=1"
+                },
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        },
+        {
+            "id": "ca6e7f41-13c8-4254-ba41-1a9313a64749",
+            "userId": "1",
+            "name": "client_traffic_tx_distribution",
+            "categoryName": "区域性能分析",
+            "userName": "admin",
+            "loginName": "admin",
+            "createTime": "2018-10-11 10:55:41.998478",
+            "updateTime": "2019-02-21 11:44:42.413",
+            "data": {
+                "schema": {
+                    "measure": [
+                        {
+                            "column": "clientnum",
+                            "id": "b5cd051d-e2f5-9e50-1bcd-a33ace27d425",
+                            "type": "column"
+                        }
+                    ],
+                    "dimension": [
+                        {
+                            "column": "datatype",
+                            "id": "d8601582-0c43-ed4f-7c29-fd2909593dbf",
+                            "type": "column"
+                        },
+                        {
+                            "column": "hour",
+                            "alias": "时间",
+                            "id": "5a672cb5-5114-84f2-c952-3a3bd9833966",
+                            "type": "column"
+                        },
+                        {
+                            "column": "day",
+                            "alias": "时间",
+                            "id": "1eedf0e7-8303-846d-ae44-698996e8ab38",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekstart",
+                            "id": "b22c80eb-565d-bef0-c41c-9a975b0f14d7",
+                            "type": "column"
+                        },
+                        {
+                            "column": "weekend",
+                            "id": "a6fd902a-2fea-8c93-4afd-a4f75f11379f",
+                            "type": "column"
+                        },
+                        {
+                            "column": "month",
+                            "alias": "时间",
+                            "id": "078b5f3e-8c6a-afb5-e790-0656dddb83f3",
+                            "type": "column"
+                        },
+                        {
+                            "column": "year",
+                            "id": "3bf5fd33-37fd-b6eb-9739-4bda917c0c71",
+                            "type": "column"
+                        },
+                        {
+                            "column": "clientnumrange",
+                            "alias": "流量区间",
+                            "id": "bbcc709d-a0bd-6cfc-a751-bfe170fc24ab",
+                            "type": "column"
+                        },
+                        {
+                            "column": "areaid",
+                            "id": "4558f23f-1b31-e3fc-d149-e480310999e9",
+                            "type": "column"
+                        }
+                    ]
+                },
+                "selects": [
+                    "areaid",
+                    "clientnum",
+                    "clientnumrange",
+                    "datatype",
+                    "day",
+                    "hour",
+                    "month",
+                    "rownumber",
+                    "weekend",
+                    "weekstart",
+                    "year"
+                ],
+                "datasource": "f0efb639-7358-4d39-b640-c4a59317c9e7",
+                "query": {
+                    "sql": "\nselect areaid,hour,day,weekstart,weekend,month,year,datatype,clientnumrange,clientnum,rownumber\nFROM (\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype in (1,2,3,4,5) THEN '<1MB' \n         ELSE 'other' END\n      as clientnumrange, \n  1 as rownumber,\n  clientrange1 as clientnum from client_traffic_tx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1   THEN '1-5MB' \n         WHEN datatype in (2,3,4,5) THEN '1-10MB' \n         ELSE 'other' END\n      as clientnumrange, \n  2 as rownumber,\n  clientrange2 as clientnum from client_traffic_tx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '5-10MB' \n         WHEN datatype = 2   THEN '10-50MB' \n         WHEN datatype in (3,4,5)   THEN '10-100MB' \n         ELSE 'other' END\n      as clientnumrange, \n  3 as rownumber,\n  clientrange3 as clientnum from client_traffic_tx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '10-50MB' \n         WHEN datatype = 2   THEN '50-100MB' \n         WHEN datatype = 3   THEN '100-500MB' \n\t\t WHEN datatype in (4,5)   THEN '100MB-1GB' \n         ELSE 'other' END\n      as clientnumrange, \n  4 as rownumber,\n  clientrange4 as clientnum from client_traffic_tx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '50-100MB' \n         WHEN datatype = 2   THEN '100-500MB' \n         WHEN datatype = 3   THEN '500MB-1GB' \n\t\t WHEN datatype = 4   THEN '1-5GB' \n\t\t WHEN datatype = 5   THEN '1-10GB' \n         ELSE 'other' END\n      as clientnumrange, \n  5 as rownumber,\n  clientrange5 as clientnum from client_traffic_tx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '100-500MB' \n         WHEN datatype = 2   THEN '500MB-1GB' \n         WHEN datatype = 3   THEN '1-5GB' \n\t\t WHEN datatype = 4   THEN '5-10GB' \n\t\t WHEN datatype = 5   THEN '10-50GB' \n         ELSE 'other' END\n      as clientnumrange, \n  6 as rownumber,\n  clientrange6 as clientnum from client_traffic_tx_distribution WHERE 1=1\nUNION ALL\n  SELECT areaid,hour,day,weekstart,weekend,month,year,datatype, \n    CASE WHEN datatype = 1 THEN '≥500MB' \n         WHEN datatype = 2   THEN '≥1GB' \n         WHEN datatype = 3   THEN '≥5GB' \n\t\t WHEN datatype = 4   THEN '≥10GB' \n\t\t WHEN datatype = 5   THEN '≥50GB' \n         ELSE 'other' END\n      as clientnumrange, \n  7 as rownumber,\n  clientrange7 as clientnum from client_traffic_tx_distribution WHERE 1=1\n) distribution "
+                },
+                "interval": "",
+                "filters": [],
+                "expressions": []
+            },
+            "edit": false,
+            "delete": false
+        }
+    ],
+    "error": null
 }

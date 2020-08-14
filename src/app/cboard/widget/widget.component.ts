@@ -419,6 +419,11 @@ export class WidgetComponent implements OnInit {
         await this.getWidgetList();
     }
 
+    // 删除spl语句错误提示
+    closeAlert(alert: any) {
+        this.alerts.splice(this.alerts.indexOf(alert), 1);
+    }
+
     buildTree(list: any[], root?: any, name?: string): Array<any> {
         if (!name) {
             name = 'Root';
@@ -1364,8 +1369,8 @@ export class WidgetComponent implements OnInit {
     buildSchema() {
         let loadFromDataset = false;
         if (!this.customDs) {
-            this.dataset = _.find(this.datasetList, ds => ds.id === this.curWidget.datasetId);
-            if (this.dataset.data.schema && (this.dataset.data.schema.measure.length > 0 || this.dataset.data.schema.dimension.length > 0)) {
+            this.dataset = _.find(this.datasetList, ds => ds.id === this.curWidget.datasetId) || {};
+            if (this.dataset.data && this.dataset.data.schema && (this.dataset.data.schema.measure.length > 0 || this.dataset.data.schema.dimension.length > 0)) {
                 loadFromDataset = true;
             }
         }

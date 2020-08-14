@@ -113,11 +113,11 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="form-group" ng-repeat="alert in alerts">
+                                        <div class="form-group" *ngFor="let alert of alerts">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <div uib-alert [ngClass]="'alert-' + (alert.type || 'warning')">
+                                                <ngb-alert [type]="alert.type || 'warning'" (close)="closeAlert(alert)">
                                                     {{alert.msg}}
-                                                </div>
+                                                </ngb-alert>
                                             </div>
                                         </div>
                                     </div>
