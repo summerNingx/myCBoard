@@ -1,0 +1,166 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+        <span aria-hidden="true">×</span></button>
+    <h4 class="modal-title">{{param.name ? param.name : param.col}}</h4>
+</div>
+<div class="modal-body box box-solid">
+    <div class="row">
+        <div class="col-md-12" *ngFor="let alert of alerts">
+            <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="alerts.splice($index, 1)">
+                {{alert.msg}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12 form-horizontal">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{'DASHBOARD.PARAM.FIND' | translate}}</span>
+                        <input type="text" class="form-control" [(ngModel)]="keyword">
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="!loadSelect">
+                <div class="col-md-12 SelectsOption">
+                    <!-- <select multiple class="form-control selectsOption" [(ngModel)]="selectItems" style="height: 300px">
+                        <option *ngFor="let v of selects | filter:selected | filter:keyword"
+                                style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="{{v}}"
+                                value="{{v}}"
+                                (dblclick)="dbclickPush(v)">{{v}}
+                        </option>
+                    </select> -->
+                    <select class="form-control selectsOption" [(ngModel)]="selectItems" style="height: 300px;">
+                        <option *ngFor="let v of selects"
+                            style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="{{v}}"
+                            value="{{v}}" (dblclick)="dbclickPush(v)">{{v}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row bs-example" *ngIf="loadSelect">
+                <div class="col-md-12 SelectsOption jumbotron" style="height: 300px; margin: 0px;">
+                    <h3>{{'COMMON.WANRING' | translate}}</h3>
+                    <p style="font-size: medium">{{'DASHBOARD.PARAM.LIST_WARN' | translate}}</p>
+                    <button type="button" (click)="getSelects();loadSelect=false;" class="btn btn-warning pull-right">
+                        {{'COMMON.LOAD' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 text-center">
+            <div class="row">
+                <select class="form-control filterOptions" [(ngModel)]="param.type" (change)="filterType()">
+                    <option *ngFor="let t of type">{{t}}</option>
+                </select>
+            </div>
+            <div class="row top-buffer-lg" *ngIf="operate.equal">
+                <button type="button" class="btn btn-default" (click)="pushValues(selectItems)"><i
+                        class="fa fa-angle-right" style="width: 15px"></i></button>
+            </div>
+            <div class="row top-buffer" *ngIf="operate.equal">
+                <button type="button" class="btn btn-default" (click)="deleteValues(selectValues)"><i
+                        class="fa fa-angle-left" style="width: 15px"></i></button>
+            </div>
+            <div class="row top-buffer" *ngIf="operate.equal">
+                <button type="button" class="btn btn-default" (click)="param.values=[]"><i
+                        class="fa fa-angle-double-left" style="width: 15px"></i></button>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <!--<div *ngIf="operate.equal">-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+            <!--<span>{{'DASHBOARD.PARAM.VALUE_LIST' | translate}}</span>-->
+            <!--<select multiple class="form-control selectsOption" [(ngModel)]="$parent.selectValues"-->
+            <!--style="height: 300px">-->
+            <!--<option ng-repeat="v in param.values | orderBy"-->
+            <!--style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="{{v}}"-->
+            <!--ng-dblclick="param.values.splice($index,1)" value="{{v}}">{{v}}-->
+            <!--</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div *ngIf="operate.equal">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label">{{'DASHBOARD.PARAM.VALUE' | translate}}</label>
+                        <button type="button" (click)="param.values.length=param.values.length+1" ng-init="initValues()"
+                            class="btn btn-primary btn-xs ng-binding">+</button>
+                        <div class="row show-grid" style="margin-bottom: 5px"
+                            *ngFor="let value of param.values;let $index = index">
+                            <div class="col-md-11">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" [(ngModel)]="param.values[$index]">
+                                    <div class="input-group-btn" *ngFor="let _i of [$index]"
+                                        ng-include="'org/cboard/view/dashboard/modal/variable-dropbox.html'">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fa fa-trash-o" style="margin-left:-15px;margin-top:7px;"
+                                    (click)="param.values.splice($index, 1)"
+                                    title="{{'COMMON.REMOVE' | translate}}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="operate.openInterval">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label">{{'DASHBOARD.PARAM.VALUE' | translate}}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="param.values[0]">
+                            <!--  Only ng-repeat can send different variables to one template -->
+                            <div class="input-group-btn" *ngFor="let _i of [0]"
+                                ng-include="'org/cboard/view/dashboard/modal/variable-dropbox.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="operate.closeInterval">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label">{{'DASHBOARD.PARAM.VALUE_A' | translate}}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="param.values[0]">
+                            <div class="input-group-btn">
+                                <div class="input-group-btn" *ngFor="let _i of [0]"
+                                    ng-include="'org/cboard/view/dashboard/modal/variable-dropbox.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label">{{'DASHBOARD.PARAM.VALUE_B' | translate}}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="param.values[1]">
+                            <div class="input-group-btn">
+                                <div class="input-group-btn" *ngFor="let _i of [1]"
+                                    ng-include="'org/cboard/view/dashboard/modal/variable-dropbox.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="filter">
+        <div class="col-md-5">
+            <label></label>
+            <input type="checkbox" [(ngModel)]="byFilter.a" (change)="getSelects.emit(setbackArr, setbackIdx)">
+            {{'CONFIG.WIDGET.SHOW_BY_FILTER' | translate}}
+        </div>
+    </div>
+    <div class="overlay" *ngIf="loading">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" (click)="modal.close()">
+        {{'COMMON.CANCEL' | translate}}
+    </button>
+    <button type="button" class="btn btn-primary" (click)="ok()">{{'COMMON.OK' | translate}}</button>
+</div>

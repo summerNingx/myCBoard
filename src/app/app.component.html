@@ -1,0 +1,21 @@
+<ng-container *ngIf="customLayout; else noCustomLayout">
+    <router-outlet></router-outlet>
+</ng-container>
+<ng-template #noCustomLayout>
+    <mk-layout-wrapper>
+        <mk-layout-header [isSidebarRightToggle]="false" (click)="menuState()">
+            <b>CBoard </b>Demo
+        </mk-layout-header>
+        <mk-layout-sidebar-left>
+        </mk-layout-sidebar-left>
+        <mk-layout-content>
+            <div mk-layout-content-before-header>
+            </div>
+            <div style="width: 100%">
+                <router-outlet></router-outlet>
+            </div>
+        </mk-layout-content>
+    </mk-layout-wrapper>
+</ng-template>
+
+{{'TIPS.CAL_EXPR' | translate}}

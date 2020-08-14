@@ -1,0 +1,33 @@
+//# Tree
+.toggle-children,
+.toggle-children-placeholder {
+    display: inline-block;
+    top: 3px;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    background: none;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+.toggle-children:before {
+    content: "\f07b";
+}
+
+.toggle-children-wrapper-expanded>.toggle-children:before {
+    content: "\f07c";
+}
+
+.toggle-children-placeholder:before {
+    content: "\f15c";
+}
+
+.tree-node-checkbox {
+    vertical-align: middle;
+}
