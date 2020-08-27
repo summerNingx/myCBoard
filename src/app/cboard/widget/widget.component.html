@@ -115,9 +115,9 @@
                                         </div>
                                         <div class="form-group" *ngFor="let alert of alerts">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <ngb-alert [type]="alert.type || 'warning'" (close)="closeAlert(alert)">
+                                                <div uib-alert [ngClass]="'alert-' + (alert.type || 'warning')">
                                                     {{alert.msg}}
-                                                </ngb-alert>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

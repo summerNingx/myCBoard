@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from '@ism/ng-cores';
 import { TreeConfig } from 'src/app/common/treeConfig';
 import { TreeComponent, TreeNode } from 'angular-tree-component';
+import { DataService } from 'src/app/service/data.service';
 
 
 @Component({
@@ -95,15 +96,14 @@ export class WidgetComponent implements OnInit {
 
     targetHighlight: any;
     options: any = new TreeConfig();
-    private dataService: any;
-    private chartService: any;
-    private updateService: any;
 
     constructor(
         private translate: TranslateService,
         private http: HttpClient,
         private modal: NgbActiveModal,
         private dialog: DialogService,
+        private dataService: DataService,
+        private chartService: any
     ) { }
 
     ngOnInit(): void {
@@ -417,11 +417,6 @@ export class WidgetComponent implements OnInit {
         this.provinces = (res && res.provinces) || [];
         await this.loadDataset();
         await this.getWidgetList();
-    }
-
-    // 删除spl语句错误提示
-    closeAlert(alert: any) {
-        this.alerts.splice(this.alerts.indexOf(alert), 1);
     }
 
     buildTree(list: any[], root?: any, name?: string): Array<any> {

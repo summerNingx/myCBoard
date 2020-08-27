@@ -84,6 +84,7 @@
     "ng5-slider": "^1.2.4",
     "ngx-monaco-editor": "^8.1.1",
     "nouislider": "^11.1.0",
+    "numbro": "^2.3.1",
     "prismjs": "^1.20.0",
     "protractor": "~5.4.0",
     "rxjs": "^6.4.0",
