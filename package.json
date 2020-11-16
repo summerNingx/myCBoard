@@ -43,8 +43,6 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@fortawesome/fontawesome-free": "^5.9.0",
-    "@ism/angular-admin-lte": "0.0.2",
-    "@ism/ng-cores": "0.0.5",
     "@ng-bootstrap/ng-bootstrap": "^5.3.0",
     "@ngx-loading-bar/core": "^4.2.0",
     "@ngx-loading-bar/http-client": "^4.2.0",
