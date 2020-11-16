@@ -8,14 +8,18 @@ import { RouterModule } from '@angular/router';
             {
                 path: '',
                 children: [
-                    {
-                        path: 'widget',
-                        loadChildren: './cboard/widget/widget.module#WidgetModule'
-                    }
+                    // {
+                    //     path: 'widget',
+                    //     loadChildren: './cboard/widget/widget.module#WidgetModule'
+                    // }
                     // , {
                     //     path: 'dashboard',
                     //     loadChildren: './cboard/dashboard/dashboard.module#DashboardModule'
                     // }
+                    {
+                        path: 'login',
+                        loadChildren: () => import('./login/login.module').then(md => md.LoginModule)
+                    }
                 ]
             }
         ], { useHash: true })
